@@ -27,11 +27,11 @@ Chain strategy: pending
 
 ## Phase 1: Foundation (new files + backup)
 
-- [ ] 1.1 Copy `index.html`, `styles.css`, `script.js` → `_backup-slice1/` (no git safety net).
-- [ ] 1.2 Create `privacy.html` — `lang="es"`, link `styles.css`; SIC sections (responsable, finalidad, derechos: acceso/rectificación/supresión/actualización, canal HAB, base legal); header + back→`/index.html`, footer; firm fields `[Pendiente: …]`. → SIC sections present; placeholder data; Valid HTML5.
-- [ ] 1.3 Create `aviso-privacidad.html` — same shell, summarize política, link→`/privacy.html`, back→`/index.html`. → Aviso references full policy.
-- [ ] 1.4 Create `robots.txt` — `User-agent: *`, `Allow: /`, `Sitemap: https://tamaraypineros.netlify.app/sitemap.xml`, no Disallow of public pages. → All crawlers allowed; legal pages not blocked.
-- [ ] 1.5 Create `sitemap.xml` — sitemaps.org 0.9; list index/privacy/aviso with `<lastmod>`; origin `https://tamaraypineros.netlify.app`. → All pages listed; valid XML.
+- [x] 1.1 Copy `index.html`, `styles.css`, `script.js` → `_backup-slice1/` (no git safety net).
+- [x] 1.2 Create `privacy.html` — `lang="es"`, link `styles.css`; SIC sections (responsable, finalidad, derechos: acceso/rectificación/supresión/actualización, canal HAB, base legal); header + back→`/index.html`, footer; firm fields `[Pendiente: …]`. → SIC sections present; placeholder data; Valid HTML5.
+- [x] 1.3 Create `aviso-privacidad.html` — same shell, summarize política, link→`/privacy.html`, back→`/index.html`. → Aviso references full policy.
+- [x] 1.4 Create `robots.txt` — `User-agent: *`, `Allow: /`, `Sitemap: https://tamaraypineros.netlify.app/sitemap.xml`, no Disallow of public pages. → All crawlers allowed; legal pages not blocked.
+- [x] 1.5 Create `sitemap.xml` — sitemaps.org 0.9; list index/privacy/aviso with `<lastmod>`; origin `https://tamaraypineros.netlify.app`. → All pages listed; valid XML.
 
 ## Phase 2: index.html inline edits
 
@@ -46,7 +46,7 @@ Chain strategy: pending
 
 ## Phase 3: styles.css + script.js
 
-- [ ] 3.1 styles.css: add `.skip-link` (hidden until `:focus`), `.case-item` button reset (`font-family:inherit; appearance:none; border:0; background:inherit`), `.legal-page` prose (max-width ~720px). Reduced-motion block exists (1815-1845) — no change. → Reduced motion honored.
+- [x] 3.1 styles.css: `.legal-page` prose container (max-width ~720px). Remaining: `.skip-link` + `.case-item` button reset — Unit 2. Reduced-motion block exists (1815-1845) — no change. → `.legal-page` added (Unit 1); `.skip-link` + `.case-item` pending (Unit 2).
 - [ ] 3.2 script.js: remove redundant case-item keydown handler (441-446); grep message strings for accents — fix only if found (design: already accented).
 
 ## Phase 4: Manual verification (no test runner)
