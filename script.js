@@ -299,6 +299,12 @@
             top: targetPosition,
             behavior: 'smooth'
           });
+
+          // Move focus to target for a11y (skip-link + keyboard nav)
+          if (!target.hasAttribute('tabindex')) {
+            target.setAttribute('tabindex', '-1');
+          }
+          target.focus({ preventScroll: true });
         });
       })(links[i]);
     }
