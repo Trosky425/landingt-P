@@ -781,6 +781,8 @@ h1, h2, h3, h4 {
   line-height: 1.5;
   color: #23262E;
   font-weight: 500;
+  font-family: inherit;
+  appearance: none;
   transition: background 0.25s ease, transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
   cursor: pointer;
   text-align: left;
@@ -1039,11 +1041,28 @@ h1, h2, h3, h4 {
 .form-group .error-message {
   font-size: 13px;
   color: #E74C3C;
-  display: none;
+  /* sr-only — always in DOM for robust aria-live */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .form-group.has-error .error-message {
-  display: block;
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 4px 0 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  border: none;
 }
 
 /* Checkbox */
@@ -1717,6 +1736,33 @@ h1, h2, h3, h4 {
   color: #53627A;
   font-size: 15px;
   line-height: 1.65;
+}
+
+/* ============================================================
+   SKIP LINK — visible only on focus
+   ============================================================ */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  z-index: 1000;
+  padding: 12px 24px;
+  background: #23262E;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0 0 8px 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  transform: translateY(-100%);
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  clip: auto;
+  transform: translateY(0);
 }
 
 /* ============================================================

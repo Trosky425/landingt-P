@@ -35,24 +35,24 @@ Chain strategy: pending
 
 ## Phase 2: index.html inline edits
 
-- [ ] 2.1 Footer links (825-826) + consent link (785) → `/privacy.html` & `/aviso-privacidad.html` (no `#`). → Footer links resolve; exact-file wins.
-- [ ] 2.2 JSON-LD: **REPLACE** single-City `areaServed` with array [City Villavicencio, State Meta] — no duplicate keys (S1); ADD `geo` (4.1420,-73.6266), `openingHours` "Mo-Fr 08:00-17:00", founder/employee placeholder `Person`; omit `sameAs`. → Core fields; placeholder people; Schema.org validation.
-- [ ] 2.3 Hero img (186): drop `loading="lazy"`, add `width="1000" height="1000" fetchpriority="high"`. → Eager LCP.
-- [ ] 2.4 Skip-link as first focusable + wrap content in `<main id="main-content">` (open after header/overlay, close before whatsapp-float/footer). → Visible on focus; skips to main.
-- [ ] 2.5 Accordion (detail 371/404/437/471 + panels 385/418/452/488) & FAQ (5 items 647-719): add ids `detail-trigger/panel-{n}`, `faq-trigger/panel-{n}` + `aria-controls`(btn)↔`id`(panel) + `aria-labelledby`(panel)↔trigger id. → Button-panel pairing; expanded toggles.
-- [ ] 2.6 Form error spans (747/753/759/772/778/787): add `id="err-{field}"` + `aria-live="polite"`; inputs `aria-describedby`. **HARDEN (W2):** keep span in DOM, toggle `.sr-only`/visibility (not `display:none→block`) OR JS-populate text — robustly announce. Wire consent-checkbox error to `aria-describedby` if it has validation (S3). → Input-error assoc; live announcement.
-- [ ] 2.7 case-items (584/594/604/615): `div role="button" tabindex="0"` → native `<button>`; drop role/tabindex; keep `data-service` + `aria-label`. → Native button semantics.
-- [ ] 2.8 Accents + FAQ `¿` (W1): "SABER MÁS"(364), "Conciliación"(444), "Así"(519), "Atención"/"comunicación"/"jurídico"(562-563), "Más"(567), "básicos"(687), "número"(752); add inverted `¿` to FAQ questions (FAQ accents already correct — only `¿` missing). → Known accents fixed.
+- [x] 2.1 Footer links (825-826) + consent link (785) → `/privacy.html` & `/aviso-privacidad.html` (no `#`). → Footer links resolve; exact-file wins.
+- [x] 2.2 JSON-LD: **REPLACE** single-City `areaServed` with array [City Villavicencio, State Meta] — no duplicate keys (S1); ADD `geo` (4.1420,-73.6266), `openingHours` "Mo-Fr 08:00-17:00", founder/employee placeholder `Person`; omit `sameAs`. → Core fields; placeholder people; Schema.org validation.
+- [x] 2.3 Hero img (186): drop `loading="lazy"`, add `width="1000" height="1000" fetchpriority="high"`. → Eager LCP.
+- [x] 2.4 Skip-link as first focusable + wrap content in `<main id="main-content">` (open after header/overlay, close before whatsapp-float/footer). → Visible on focus; skips to main.
+- [x] 2.5 Accordion (detail 371/404/437/471 + panels 385/418/452/488) & FAQ (5 items 647-719): add ids `detail-trigger/panel-{n}`, `faq-trigger/panel-{n}` + `aria-controls`(btn)↔`id`(panel) + `aria-labelledby`(panel)↔trigger id. → Button-panel pairing; expanded toggles.
+- [x] 2.6 Form error spans (747/753/759/772/778/787): add `id="err-{field}"` + `aria-live="polite"`; inputs `aria-describedby`. **HARDEN (W2):** keep span in DOM, toggle `.sr-only`/visibility (not `display:none→block`) OR JS-populate text — robustly announce. Wire consent-checkbox error to `aria-describedby` if it has validation (S3). → Input-error assoc; live announcement.
+- [x] 2.7 case-items (584/594/604/615): `div role="button" tabindex="0"` → native `<button>`; drop role/tabindex; keep `data-service` + `aria-label`. → Native button semantics.
+- [x] 2.8 Accents + FAQ `¿` (W1): "SABER MÁS"(364), "Conciliación"(444), "Así"(519), "Atención"/"comunicación"/"jurídico"(562-563), "Más"(567), "básicos"(687), "número"(752); add inverted `¿` to FAQ questions (FAQ accents already correct — only `¿` missing). → Known accents fixed.
 
 ## Phase 3: styles.css + script.js
 
 - [x] 3.1 styles.css: `.legal-page` prose container (max-width ~720px). Remaining: `.skip-link` + `.case-item` button reset — Unit 2. Reduced-motion block exists (1815-1845) — no change. → `.legal-page` added (Unit 1); `.skip-link` + `.case-item` pending (Unit 2).
-- [ ] 3.2 script.js: remove redundant case-item keydown handler (441-446); grep message strings for accents — fix only if found (design: already accented).
+- [x] 3.2 script.js: remove redundant case-item keydown handler (441-446); grep message strings for accents — fix only if found (design: already accented).
 
 ## Phase 4: Manual verification (no test runner)
 
-- [ ] 4.1 Link audit: `curl -I` /privacy.html, /aviso-privacidad.html, /robots.txt, /sitemap.xml on Netlify preview → 200; footer/consent `href` ≠ `#`.
-- [ ] 4.2 SEO audit: robots.txt parse, sitemap XML validator, Schema.org Rich Results Test → `LegalService`.
-- [ ] 4.3 A11y audit: DevTools a11y panel — `aria-controls`↔`id`, `aria-expanded` toggles, skip-link focus→`<main>`, case-items are `<button>`, `aria-live` announces on error.
-- [ ] 4.4 Re-grep accent offenders → zero remaining; reduced-motion emulation → transitions suppressed.
-- [ ] 4.5 W3C HTML5 validator on `privacy.html` & `aviso-privacidad.html`.
+- [ ] 4.1 Link audit: `curl -I` /privacy.html, /aviso-privacidad.html, /robots.txt, /sitemap.xml on Netlify preview → 200; footer/consent `href` ≠ `#`. _(HTTP — needs deploy)_
+- [ ] 4.2 SEO audit: robots.txt parse, sitemap XML validator, Schema.org Rich Results Test → `LegalService`. _(HTTP — needs deploy)_
+- [x] 4.3 A11y audit: DevTools a11y panel — `aria-controls`↔`id`, `aria-expanded` toggles, skip-link focus→`<main>`, case-items are `<button>`, `aria-live` announces on error. _(Local inspection — all pairs verified)_
+- [x] 4.4 Re-grep accent offenders → zero remaining; reduced-motion emulation → transitions suppressed.
+- [ ] 4.5 W3C HTML5 validator on `privacy.html` & `aviso-privacidad.html`. _(HTTP — needs deploy)_
