@@ -1,2 +1,10 @@
-# Netlify SPA fallback — serve index.html for any unmatched route
-/*    /index.html   200
+# Block internal artifacts from public access
+/_backup-slice1/*            /404.html   404
+/_backup-trust/*             /404.html   404
+/tamara_pineros_landing_kit/* /404.html   404
+/openspec/*                  /404.html   404
+/.atl/*                      /404.html   404
+
+# Legal route aliases
+/privacy                     /privacy.html              301
+/aviso-privacidad            /aviso-privacidad.html     301

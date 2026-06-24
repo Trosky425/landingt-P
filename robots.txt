@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tamaraypineros.netlify.app/sitemap.xml
+Sitemap: https://glat-tp.com/sitemap.xml

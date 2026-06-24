@@ -1,6 +1,6 @@
 /**
  * Tamara & Piñeros — Landing Page Scripts
- * Mobile nav, FAQ accordion, WhatsApp links, form validation, scroll effects
+ * Mobile nav, FAQ accordion, WhatsApp links, scroll effects
  */
 
 (function () {
@@ -38,6 +38,15 @@
     return 'https://wa.me/' + CONFIG.whatsappNumber + '?text=' + encoded;
   }
 
+  function openExternalWindow(url) {
+    var newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+    if (newWindow) {
+      newWindow.opener = null;
+    } else {
+      window.location.href = url;
+    }
+  }
+
   function setupWhatsAppLinks() {
     var links = document.querySelectorAll('[data-whatsapp]');
     for (var i = 0; i < links.length; i++) {
@@ -46,7 +55,7 @@
           e.preventDefault();
           var context = link.getAttribute('data-whatsapp');
           var url = getWhatsAppUrl(context);
-          window.open(url, '_blank');
+          openExternalWindow(url);
         });
       })(links[i]);
     }
@@ -145,128 +154,6 @@
       var firstBtn = items[0].querySelector('.faq-question');
       if (firstBtn) firstBtn.setAttribute('aria-expanded', 'true');
     }
-  }
-
-  /* ============================================================
-     FORM VALIDATION
-     ============================================================ */
-  function setupForm() {
-    var form = document.getElementById('contactForm');
-    if (!form) return;
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      var isValid = true;
-      var fields = [
-        { id: 'form-name', type: 'text' },
-        { id: 'form-phone', type: 'phone' },
-        { id: 'form-email', type: 'email' },
-        { id: 'form-subject', type: 'select' },
-        { id: 'form-message', type: 'text' }
-      ];
-
-      // Validate each field
-      for (var i = 0; i < fields.length; i++) {
-        var field = fields[i];
-        var input = document.getElementById(field.id);
-        if (!input) continue;
-
-        var group = input.closest('.form-group');
-        if (!group) continue;
-
-        var value = input.value.trim();
-        var valid = true;
-
-        if (!value) {
-          valid = false;
-        } else if (field.type === 'email') {
-          valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-        } else if (field.type === 'phone') {
-          // Accept digits, spaces, +, -, and parentheses (Colombian phone numbers)
-          valid = /^[\d\s+\-()]{7,20}$/.test(value);
-        }
-
-        var errorSpan = group.querySelector('.error-message');
-
-        if (!valid) {
-          group.classList.add('has-error');
-          input.classList.add('has-error');
-          if (errorSpan) {
-            errorSpan.textContent = errorSpan.getAttribute('data-error') || '';
-          }
-          isValid = false;
-        } else {
-          group.classList.remove('has-error');
-          input.classList.remove('has-error');
-          if (errorSpan) {
-            errorSpan.textContent = '';
-          }
-        }
-      }
-
-      // Validate consent checkbox
-      var consent = document.getElementById('form-consent');
-      var consentGroup = consent ? consent.closest('.form-group') : null;
-      var consentError = consentGroup ? consentGroup.querySelector('.error-message') : null;
-      if (consent && !consent.checked) {
-        if (consentGroup) consentGroup.classList.add('has-error');
-        if (consentError) consentError.textContent = consentError.getAttribute('data-error') || '';
-        isValid = false;
-      } else if (consentGroup) {
-        consentGroup.classList.remove('has-error');
-        if (consentError) consentError.textContent = '';
-      }
-
-      if (!isValid) {
-        // Scroll to first error
-        var firstError = form.querySelector('.has-error');
-        if (firstError) {
-          firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-        return;
-      }
-
-      // Send to Netlify Forms via AJAX
-      var formData = new FormData(form);
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData).toString()
-      })
-        .then(function () {
-          showSuccess();
-        })
-        .catch(function () {
-          // Still show success to avoid blocking user UX on edge cases
-          showSuccess();
-        });
-
-      function showSuccess() {
-        var formContent = form.querySelectorAll('.form-group, .form-submit');
-        for (var j = 0; j < formContent.length; j++) {
-          formContent[j].style.display = 'none';
-        }
-
-        var success = document.getElementById('formSuccess');
-        if (success) {
-          success.classList.add('is-visible');
-        }
-      }
-    });
-
-    // Clear errors on input
-    form.addEventListener('input', function (e) {
-      var group = e.target.closest('.form-group');
-      if (group) {
-        group.classList.remove('has-error');
-        e.target.classList.remove('has-error');
-        var errorSpan = group.querySelector('.error-message');
-        if (errorSpan) {
-          errorSpan.textContent = '';
-        }
-      }
-    });
   }
 
   /* ============================================================
@@ -457,7 +344,7 @@
           var whatsappContext = serviceMap[service];
           if (whatsappContext) {
             var url = getWhatsAppUrl(whatsappContext);
-            window.open(url, '_blank');
+            openExternalWindow(url);
           }
         });
 
@@ -474,7 +361,6 @@
     setupMobileNav();
     setupFAQ();
     setupDetailsAccordion();
-    setupForm();
     setupScrollEffects();
     setupScrollReveal();
     setupScrollProgress();

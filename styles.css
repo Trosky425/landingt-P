@@ -969,6 +969,13 @@ h1, h2, h3, h4 {
   opacity: 0.8;
 }
 
+.contact-actions,
+.form-status-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
 /* Form */
 .contact-form {
   background: rgba(255, 255, 255, 0.82);
@@ -991,6 +998,39 @@ h1, h2, h3, h4 {
   font-size: 22px;
   font-weight: 700;
   margin: 0 0 4px;
+}
+
+.contact-form--disabled {
+  opacity: 1;
+}
+
+.contact-form--disabled fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 16px;
+}
+
+.contact-form--disabled .form-group input,
+.contact-form--disabled .form-group select,
+.contact-form--disabled .form-group textarea,
+.contact-form--disabled .form-checkbox input[type="checkbox"] {
+  background: #F4F6FA;
+  color: #7A8497;
+  cursor: not-allowed;
+}
+
+.contact-form--disabled .form-group label,
+.contact-form--disabled .form-checkbox label {
+  color: #6A7386;
+}
+
+.form-status-message {
+  margin: 0;
+  color: #53627A;
+  font-size: 15px;
+  line-height: 1.6;
 }
 
 .form-group {
@@ -1098,6 +1138,12 @@ h1, h2, h3, h4 {
 
 .form-submit {
   margin-top: 4px;
+}
+
+.form-submit .btn[disabled] {
+  opacity: 0.65;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 /* Form success state */
@@ -2089,6 +2135,34 @@ h1, h2, h3, h4 {
 .legal-page .legal-back {
   margin-top: 32px;
   font-size: 15px;
+}
+
+.contact-card {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid #D9DCE5;
+  border-radius: 28px;
+  padding: 28px;
+  box-shadow: 0 16px 48px rgba(35, 38, 46, 0.08);
+}
+
+.contact-card h3 {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.contact-card p {
+  margin: 0 0 16px;
+  color: #53627A;
+}
+
+.contact-list {
+  margin: 0 0 24px;
+  padding-left: 20px;
+  color: #455065;
+}
+
+.contact-list li {
+  margin-bottom: 10px;
 }
 
 @media (min-width: 768px) {
