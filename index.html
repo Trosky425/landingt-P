@@ -33,10 +33,22 @@
     "description": "Abogados asociados en Villavicencio especializados en constitución de empresas, acciones constitucionales, conciliación y asesoría jurídica.",
     "url": "https://tamaraypineros.netlify.app",
     "telephone": "+573224768106",
-    "areaServed": {
-      "@type": "City",
-      "name": "Villavicencio"
+    "areaServed": [
+      { "@type": "City", "name": "Villavicencio" },
+      { "@type": "State", "name": "Meta" }
+    ],
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "4.1420",
+      "longitude": "-73.6266"
     },
+    "openingHours": "Mo-Fr 08:00-17:00",
+    "founder": [
+      { "@type": "Person", "name": "[Pendiente: nombre del fundador]" }
+    ],
+    "employee": [
+      { "@type": "Person", "name": "[Pendiente: nombre del abogado]" }
+    ],
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Villavicencio",
@@ -65,6 +77,8 @@
 
   <!-- Scroll progress indicator -->
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
 
   <!-- ============================================================
        HEADER
@@ -151,6 +165,8 @@
     </div>
   </div>
 
+  <main id="main-content">
+
   <!-- ============================================================
        HERO
        ============================================================ -->
@@ -183,7 +199,7 @@
             src="perfil-1000.png"
             alt="Tamara &amp; Piñeros — Abogados Asociados"
             class="hero-image"
-            loading="lazy"
+            width="1000" height="1000" fetchpriority="high"
           />
         </div>
         <div class="hero-stats">
@@ -361,14 +377,14 @@
   <section class="section section-soft" id="servicios-detalle">
     <div class="container">
       <div class="section-head" data-reveal="fade-up">
-        <p class="section-kicker">SABER MAS</p>
+        <p class="section-kicker">SABER MÁS</p>
         <h2>Cuando necesitas cada servicio</h2>
         <p>Te explicamos en qué situaciones aplicar cada servicio, cómo es el proceso y qué necesitas para empezar.</p>
       </div>
 
       <div class="details-grid" data-reveal="fade-up">
         <div class="detail-item">
-          <button class="detail-question" aria-expanded="false">
+          <button class="detail-question" id="detail-trigger-1" aria-controls="detail-panel-1" aria-expanded="false">
             <span class="detail-question-icon" aria-hidden="true">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
@@ -382,7 +398,7 @@
               </svg>
             </span>
           </button>
-          <div class="detail-answer">
+          <div class="detail-answer" id="detail-panel-1" aria-labelledby="detail-trigger-1">
             <div class="detail-answer-inner">
               <div class="detail-col">
                 <h4>Cuándo aplica</h4>
@@ -401,7 +417,7 @@
         </div>
 
         <div class="detail-item">
-          <button class="detail-question" aria-expanded="false">
+          <button class="detail-question" id="detail-trigger-2" aria-controls="detail-panel-2" aria-expanded="false">
             <span class="detail-question-icon" aria-hidden="true">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
@@ -415,7 +431,7 @@
               </svg>
             </span>
           </button>
-          <div class="detail-answer">
+          <div class="detail-answer" id="detail-panel-2" aria-labelledby="detail-trigger-2">
             <div class="detail-answer-inner">
               <div class="detail-col">
                 <h4>Cuándo aplica</h4>
@@ -434,14 +450,14 @@
         </div>
 
         <div class="detail-item">
-          <button class="detail-question" aria-expanded="false">
+          <button class="detail-question" id="detail-trigger-3" aria-controls="detail-panel-3" aria-expanded="false">
             <span class="detail-question-icon" aria-hidden="true">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
                 <polyline points="22 4 12 14.01 9 11.01"/>
               </svg>
             </span>
-            <span>Conciliacion</span>
+            <span>Conciliación</span>
             <span class="detail-toggle" aria-hidden="true">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
                 <line x1="12" y1="5" x2="12" y2="19"/>
@@ -449,7 +465,7 @@
               </svg>
             </span>
           </button>
-          <div class="detail-answer">
+          <div class="detail-answer" id="detail-panel-3" aria-labelledby="detail-trigger-3">
             <div class="detail-answer-inner">
               <div class="detail-col">
                 <h4>Cuándo aplica</h4>
@@ -468,7 +484,7 @@
         </div>
 
         <div class="detail-item">
-          <button class="detail-question" aria-expanded="false">
+          <button class="detail-question" id="detail-trigger-4" aria-controls="detail-panel-4" aria-expanded="false">
             <span class="detail-question-icon" aria-hidden="true">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
@@ -485,7 +501,7 @@
               </svg>
             </span>
           </button>
-          <div class="detail-answer">
+          <div class="detail-answer" id="detail-panel-4" aria-labelledby="detail-trigger-4">
             <div class="detail-answer-inner">
               <div class="detail-col">
                 <h4>Cuándo aplica</h4>
@@ -516,7 +532,7 @@
     <div class="container">
       <div class="section-head narrow" data-reveal="fade-up">
         <p class="section-kicker">PROCESO</p>
-        <h2>Asi trabajamos</h2>
+        <h2>Así trabajamos</h2>
       </div>
 
       <div class="steps-grid">
@@ -559,12 +575,12 @@
           <p>Nos enfocamos en qué hacer, qué evitar y qué sigue.</p>
         </div>
         <div class="reason" data-reveal="fade-up" data-delay="200">
-          <h3>Atencion cercana y seria</h3>
-          <p>Trato profesional, comunicacion simple y criterio juridico.</p>
+          <h3>Atención cercana y seria</h3>
+          <p>Trato profesional, comunicación simple y criterio jurídico.</p>
         </div>
         <div class="reason" data-reveal="fade-up" data-delay="300">
           <h3>Menos fricción, más claridad</h3>
-          <p>Menos vueltas para empezar. Mas orden desde el primer contacto.</p>
+          <p>Menos vueltas para empezar. Más orden desde el primer contacto.</p>
         </div>
       </div>
     </div>
@@ -581,7 +597,7 @@
       </div>
 
       <div class="case-list" data-reveal="fade-up">
-        <div class="case-item" data-service="empresa" tabindex="0" role="button" aria-label="Ver más sobre constitución de empresas">
+        <button class="case-item" data-service="empresa" aria-label="Ver más sobre constitución de empresas">
           <svg class="case-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
           </svg>
@@ -590,8 +606,8 @@
             <line x1="5" y1="12" x2="19" y2="12"/>
             <polyline points="12 5 19 12 12 19"/>
           </svg>
-        </div>
-        <div class="case-item" data-service="constitucional" tabindex="0" role="button" aria-label="Ver más sobre acciones constitucionales">
+        </button>
+        <button class="case-item" data-service="constitucional" aria-label="Ver más sobre acciones constitucionales">
           <svg class="case-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           </svg>
@@ -600,19 +616,19 @@
             <line x1="5" y1="12" x2="19" y2="12"/>
             <polyline points="12 5 19 12 12 19"/>
           </svg>
-        </div>
-        <div class="case-item" data-service="conciliacion" tabindex="0" role="button" aria-label="Ver más sobre conciliación">
+        </button>
+        <button class="case-item" data-service="conciliacion" aria-label="Ver más sobre conciliación">
           <svg class="case-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
             <polyline points="22 4 12 14.01 9 11.01"/>
           </svg>
-          <span>Quiero intentar una conciliacion antes de escalar el conflicto.</span>
+          <span>Quiero intentar una conciliación antes de escalar el conflicto.</span>
           <svg class="case-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="5" y1="12" x2="19" y2="12"/>
             <polyline points="12 5 19 12 12 19"/>
           </svg>
-        </div>
-        <div class="case-item" data-service="asesoria" tabindex="0" role="button" aria-label="Ver más sobre asesoría jurídica">
+        </button>
+        <button class="case-item" data-service="asesoria" aria-label="Ver más sobre asesoría jurídica">
           <svg class="case-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
             <polyline points="14 2 14 8 20 8"/>
@@ -624,7 +640,7 @@
             <line x1="5" y1="12" x2="19" y2="12"/>
             <polyline points="12 5 19 12 12 19"/>
           </svg>
-        </div>
+        </button>
       </div>
     </div>
   </section>
@@ -644,8 +660,8 @@
 
       <div class="faq-grid" data-reveal="fade-up">
         <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            <span>Atienden solo en Villavicencio?</span>
+          <button class="faq-question" id="faq-trigger-1" aria-controls="faq-panel-1" aria-expanded="false">
+            <span>¿Atienden solo en Villavicencio?</span>
             <span class="faq-icon" aria-hidden="true">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
                 <line x1="12" y1="5" x2="12" y2="19" />
@@ -653,14 +669,14 @@
               </svg>
             </span>
           </button>
-          <div class="faq-answer">
+          <div class="faq-answer" id="faq-panel-1" aria-labelledby="faq-trigger-1">
             <p>Atendemos en Villavicencio y también de forma virtual, según el tipo de asunto.</p>
           </div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            <span>Puedo escribir por WhatsApp primero?</span>
+          <button class="faq-question" id="faq-trigger-2" aria-controls="faq-panel-2" aria-expanded="false">
+            <span>¿Puedo escribir por WhatsApp primero?</span>
             <span class="faq-icon" aria-hidden="true">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
                 <line x1="12" y1="5" x2="12" y2="19" />
@@ -668,14 +684,14 @@
               </svg>
             </span>
           </button>
-          <div class="faq-answer">
+          <div class="faq-answer" id="faq-panel-2" aria-labelledby="faq-trigger-2">
             <p>Si. Ese es el canal más rápido para una orientación inicial.</p>
           </div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            <span>Qué debo enviar por WhatsApp?</span>
+          <button class="faq-question" id="faq-trigger-3" aria-controls="faq-panel-3" aria-expanded="false">
+            <span>¿Qué debo enviar por WhatsApp?</span>
             <span class="faq-icon" aria-hidden="true">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
                 <line x1="12" y1="5" x2="12" y2="19" />
@@ -683,14 +699,14 @@
               </svg>
             </span>
           </button>
-          <div class="faq-answer">
-            <p>Un resumen breve del caso o necesidad, tus datos de contacto y, si aplica, documentos basicos.</p>
+          <div class="faq-answer" id="faq-panel-3" aria-labelledby="faq-trigger-3">
+            <p>Un resumen breve del caso o necesidad, tus datos de contacto y, si aplica, documentos básicos.</p>
           </div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            <span>Puedo empezar aunque no sepa qué servicio necesito?</span>
+          <button class="faq-question" id="faq-trigger-4" aria-controls="faq-panel-4" aria-expanded="false">
+            <span>¿Puedo empezar aunque no sepa qué servicio necesito?</span>
             <span class="faq-icon" aria-hidden="true">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
                 <line x1="12" y1="5" x2="12" y2="19" />
@@ -698,14 +714,14 @@
               </svg>
             </span>
           </button>
-          <div class="faq-answer">
+          <div class="faq-answer" id="faq-panel-4" aria-labelledby="faq-trigger-4">
             <p>Si. Revisamos tu situación y te orientamos sobre la vía que corresponda.</p>
           </div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            <span>La orientación inicial reemplaza el análisis completo del caso?</span>
+          <button class="faq-question" id="faq-trigger-5" aria-controls="faq-panel-5" aria-expanded="false">
+            <span>¿La orientación inicial reemplaza el análisis completo del caso?</span>
             <span class="faq-icon" aria-hidden="true">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
                 <line x1="12" y1="5" x2="12" y2="19" />
@@ -713,7 +729,7 @@
               </svg>
             </span>
           </button>
-          <div class="faq-answer">
+          <div class="faq-answer" id="faq-panel-5" aria-labelledby="faq-trigger-5">
             <p>No necesariamente. El alcance depende del asunto y de la revisión concreta de la información.</p>
           </div>
         </div>
@@ -743,25 +759,25 @@
 
         <div class="form-group">
           <label for="form-name">Nombre completo</label>
-          <input type="text" id="form-name" name="name" placeholder="Tu nombre" required autocomplete="name" />
-          <span class="error-message">Por favor ingresa tu nombre.</span>
+          <input type="text" id="form-name" name="name" placeholder="Tu nombre" required autocomplete="name" aria-describedby="err-name" />
+          <span class="error-message" id="err-name" aria-live="polite">Por favor ingresa tu nombre.</span>
         </div>
 
         <div class="form-group">
           <label for="form-phone">Teléfono</label>
-          <input type="tel" id="form-phone" name="phone" placeholder="Tu numero" required autocomplete="tel" />
-          <span class="error-message">Por favor ingresa un teléfono válido.</span>
+          <input type="tel" id="form-phone" name="phone" placeholder="Tu número" required autocomplete="tel" aria-describedby="err-phone" />
+          <span class="error-message" id="err-phone" aria-live="polite">Por favor ingresa un teléfono válido.</span>
         </div>
 
         <div class="form-group">
           <label for="form-email">Correo electrónico</label>
-          <input type="email" id="form-email" name="email" placeholder="Tu correo" required autocomplete="email" />
-          <span class="error-message">Por favor ingresa un correo electrónico válido.</span>
+          <input type="email" id="form-email" name="email" placeholder="Tu correo" required autocomplete="email" aria-describedby="err-email" />
+          <span class="error-message" id="err-email" aria-live="polite">Por favor ingresa un correo electrónico válido.</span>
         </div>
 
         <div class="form-group">
           <label for="form-subject">Tipo de asunto</label>
-          <select id="form-subject" name="subject" required>
+          <select id="form-subject" name="subject" required aria-describedby="err-subject">
             <option value="">Selecciona una opción</option>
             <option value="constitucion">Constitución de empresas</option>
             <option value="constitucionales">Acciones constitucionales</option>
@@ -769,22 +785,22 @@
             <option value="asesoria">Asesoría jurídica</option>
             <option value="otro">Otro</option>
           </select>
-          <span class="error-message">Por favor selecciona un tipo de asunto.</span>
+          <span class="error-message" id="err-subject" aria-live="polite">Por favor selecciona un tipo de asunto.</span>
         </div>
 
         <div class="form-group">
           <label for="form-message">Cuéntanos brevemente tu necesidad</label>
-          <textarea id="form-message" name="message" rows="4" placeholder="Describe tu caso o necesidad" required></textarea>
-          <span class="error-message">Por favor describe brevemente tu necesidad.</span>
+          <textarea id="form-message" name="message" rows="4" placeholder="Describe tu caso o necesidad" required aria-describedby="err-message"></textarea>
+          <span class="error-message" id="err-message" aria-live="polite">Por favor describe brevemente tu necesidad.</span>
         </div>
 
         <div class="form-group form-checkbox">
-          <input type="checkbox" id="form-consent" name="consent" required />
+          <input type="checkbox" id="form-consent" name="consent" required aria-describedby="err-consent" />
           <label for="form-consent">
             Autorizo el tratamiento de mis datos personales conforme a la
-            <a href="#" aria-label="Política de tratamiento de datos">política de tratamiento de datos personales</a>.
+            <a href="/privacy.html" aria-label="Política de tratamiento de datos">política de tratamiento de datos personales</a>.
           </label>
-          <span class="error-message">Debes aceptar la política de tratamiento de datos.</span>
+          <span class="error-message" id="err-consent" aria-live="polite">Debes aceptar la política de tratamiento de datos.</span>
         </div>
 
         <div class="form-submit">
@@ -798,6 +814,8 @@
       </form>
     </div>
   </section>
+
+  </main>
 
   <!-- ============================================================
        WHATSAPP FLOATING BUTTON (mobile)
@@ -822,8 +840,8 @@
           Constitución de empresas &middot; Acciones constitucionales &middot; Conciliación &middot; Asesoría jurídica
         </div>
         <div class="footer-links">
-          <a href="#">Política de tratamiento de datos</a>
-          <a href="#">Aviso de privacidad</a>
+          <a href="/privacy.html">Política de tratamiento de datos</a>
+          <a href="/aviso-privacidad.html">Aviso de privacidad</a>
           <a href="#contacto">Contacto</a>
         </div>
       </div>

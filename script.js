@@ -437,13 +437,7 @@
           }
         });
 
-        // Keyboard support
-        item.addEventListener('keydown', function (e) {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            item.click();
-          }
-        });
+
       })(items[i]);
     }
   }
