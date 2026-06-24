@@ -760,19 +760,19 @@
         <div class="form-group">
           <label for="form-name">Nombre completo</label>
           <input type="text" id="form-name" name="name" placeholder="Tu nombre" required autocomplete="name" aria-describedby="err-name" />
-          <span class="error-message" id="err-name" aria-live="polite">Por favor ingresa tu nombre.</span>
+          <span class="error-message" id="err-name" aria-live="polite" data-error="Por favor ingresa tu nombre."></span>
         </div>
 
         <div class="form-group">
           <label for="form-phone">Teléfono</label>
           <input type="tel" id="form-phone" name="phone" placeholder="Tu número" required autocomplete="tel" aria-describedby="err-phone" />
-          <span class="error-message" id="err-phone" aria-live="polite">Por favor ingresa un teléfono válido.</span>
+          <span class="error-message" id="err-phone" aria-live="polite" data-error="Por favor ingresa un teléfono válido."></span>
         </div>
 
         <div class="form-group">
           <label for="form-email">Correo electrónico</label>
           <input type="email" id="form-email" name="email" placeholder="Tu correo" required autocomplete="email" aria-describedby="err-email" />
-          <span class="error-message" id="err-email" aria-live="polite">Por favor ingresa un correo electrónico válido.</span>
+          <span class="error-message" id="err-email" aria-live="polite" data-error="Por favor ingresa un correo electrónico válido."></span>
         </div>
 
         <div class="form-group">
@@ -785,13 +785,13 @@
             <option value="asesoria">Asesoría jurídica</option>
             <option value="otro">Otro</option>
           </select>
-          <span class="error-message" id="err-subject" aria-live="polite">Por favor selecciona un tipo de asunto.</span>
+          <span class="error-message" id="err-subject" aria-live="polite" data-error="Por favor selecciona un tipo de asunto."></span>
         </div>
 
         <div class="form-group">
           <label for="form-message">Cuéntanos brevemente tu necesidad</label>
           <textarea id="form-message" name="message" rows="4" placeholder="Describe tu caso o necesidad" required aria-describedby="err-message"></textarea>
-          <span class="error-message" id="err-message" aria-live="polite">Por favor describe brevemente tu necesidad.</span>
+          <span class="error-message" id="err-message" aria-live="polite" data-error="Por favor describe brevemente tu necesidad."></span>
         </div>
 
         <div class="form-group form-checkbox">
@@ -800,7 +800,7 @@
             Autorizo el tratamiento de mis datos personales conforme a la
             <a href="/privacy.html" aria-label="Política de tratamiento de datos">política de tratamiento de datos personales</a>.
           </label>
-          <span class="error-message" id="err-consent" aria-live="polite">Debes aceptar la política de tratamiento de datos.</span>
+          <span class="error-message" id="err-consent" aria-live="polite" data-error="Debes aceptar la política de tratamiento de datos."></span>
         </div>
 
         <div class="form-submit">

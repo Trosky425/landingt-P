@@ -184,24 +184,35 @@
           valid = /^[\d\s+\-()]{7,20}$/.test(value);
         }
 
+        var errorSpan = group.querySelector('.error-message');
+
         if (!valid) {
           group.classList.add('has-error');
           input.classList.add('has-error');
+          if (errorSpan) {
+            errorSpan.textContent = errorSpan.getAttribute('data-error') || '';
+          }
           isValid = false;
         } else {
           group.classList.remove('has-error');
           input.classList.remove('has-error');
+          if (errorSpan) {
+            errorSpan.textContent = '';
+          }
         }
       }
 
       // Validate consent checkbox
       var consent = document.getElementById('form-consent');
       var consentGroup = consent ? consent.closest('.form-group') : null;
+      var consentError = consentGroup ? consentGroup.querySelector('.error-message') : null;
       if (consent && !consent.checked) {
         if (consentGroup) consentGroup.classList.add('has-error');
+        if (consentError) consentError.textContent = consentError.getAttribute('data-error') || '';
         isValid = false;
       } else if (consentGroup) {
         consentGroup.classList.remove('has-error');
+        if (consentError) consentError.textContent = '';
       }
 
       if (!isValid) {
@@ -247,6 +258,10 @@
       if (group) {
         group.classList.remove('has-error');
         e.target.classList.remove('has-error');
+        var errorSpan = group.querySelector('.error-message');
+        if (errorSpan) {
+          errorSpan.textContent = '';
+        }
       }
     });
   }
