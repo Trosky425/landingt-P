@@ -34,18 +34,18 @@ Chain strategy: stacked-to-main
 
 ## Phase 2: Equipo Section Core (PR 2 -- Unit 2)
 
-- [ ] 2.1 `index.html`: insert `<section id="equipo">` (`.section-alt`) between `#diferenciales` and `#casos`, 3 attorney cards (picture/h3/card-specialty/WhatsApp CTA)
-- [ ] 2.2 `index.html` header `.nav`: add `<a href="#equipo">Equipo</a>` between Diferenciales and Casos
-- [ ] 2.3 `index.html` mobile `.mobile-overlay-nav`: insert Equipo `--i:4` after Diferenciales; renumber Casos->5, FAQ->6, Contacto->7
-- [ ] 2.4 `styles.css`: add `.team-grid` (1->2@640->3@900), `.card--team`, `.card-photo` (4/5 cover), `.card-specialty` (accent #5A4FCF) -- NEVER edit `.cards-grid`
-- [ ] 2.5 `styles.css`: add `.team-grid [data-reveal],` to existing stagger selector (search pattern `.cards-grid [data-reveal]`, not line number)
-- [ ] 2.6 `script.js`: add `equipo-sara`/`equipo-camilo`/`equipo-raul` to `CONFIG.messages` (name + specialty, firm # 573224768106)
+- [x] 2.1 `index.html`: insert `<section id="equipo">` (`.section-alt`) between `#diferenciales` and `#casos`, 3 attorney cards (picture/h3/card-specialty/WhatsApp CTA)
+- [x] 2.2 `index.html` header `.nav`: add `<a href="#equipo">Equipo</a>` between Diferenciales and Casos
+- [x] 2.3 `index.html` mobile `.mobile-overlay-nav`: insert Equipo `--i:4` after Diferenciales; renumber Casos->5, FAQ->6, Contacto->7
+- [x] 2.4 `styles.css`: add `.team-grid` (1->2@640->3@900), `.card--team`, `.card-photo` (4/5 cover), `.card-specialty` (accent #5A4FCF) -- NEVER edit `.cards-grid`
+- [x] 2.5 `styles.css`: add `.team-grid [data-reveal],` to existing stagger selector (search pattern `.cards-grid [data-reveal]`, not line number)
+- [x] 2.6 `script.js`: add `equipo-sara`/`equipo-camilo`/`equipo-raul` to `CONFIG.messages` (name + specialty, firm # 573224768106)
 
 ## Phase 3: Social Links (PR 2 -- Unit 3)
 
-- [ ] 3.1 `index.html` footer `.footer-inner`: add `.footer-social` row (FB/IG/WhatsApp inline SVG + `aria-label`s, canonical hrefs, `igsh` stripped)
-- [ ] 3.2 `index.html` `.mobile-overlay-footer`: add `.mobile-overlay-social` ABOVE existing WhatsApp button (same hrefs/SVGs/labels)
-- [ ] 3.3 `styles.css`: add `.footer-social` (#53627A->hover #5A4FCF) + `.mobile-overlay-social` (light-on-dark); both 44x44 touch target + `:focus-visible`; NO social in desktop header
+- [x] 3.1 `index.html` footer `.footer-inner`: add `.footer-social` row (FB/IG/WhatsApp inline SVG + `aria-label`s, canonical hrefs, `igsh` stripped)
+- [x] 3.2 `index.html` `.mobile-overlay-footer`: add `.mobile-overlay-social` ABOVE existing WhatsApp button (same hrefs/SVGs/labels)
+- [x] 3.3 `styles.css`: add `.footer-social` (#53627A->hover #5A4FCF) + `.mobile-overlay-social` (light-on-dark); both 44x44 touch target + `:focus-visible`; NO social in desktop header
 
 ## Phase 4: Verification (manual)
 
@@ -54,6 +54,6 @@ Chain strategy: stacked-to-main
 - [ ] 4.3 A11y: social links >=44x44, focus-visible outline, descriptive aria-labels, keyboard; "Equipo" in header + sidebar nav
 - [ ] 4.4 Reduced-motion: emulate `prefers-reduced-motion: reduce` -> cards visible immediately, no transform
 - [ ] 4.5 SEO: JSON-LD validates as LegalService (Rich Results Test), 3 real Persons + sameAs, no founder
-- [ ] 4.6 Grep: zero "Sanenz" matches in index.html/script.js; zero "[Pendiente" in index.html
+- [x] 4.6 Grep: zero "Sanenz" matches in index.html/script.js; zero "[Pendiente" in index.html
 - [ ] 4.7 Performance: `Get-Item *.avif,*.webp,*.png | Measure-Object Length -Sum` < 300KB
 - [ ] 4.8 No fabricated data: each card exposes only name + specialty + photo + WhatsApp (no Tarjeta Profesional, years, bios, testimonials, founder)

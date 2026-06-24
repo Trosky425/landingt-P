@@ -22,7 +22,10 @@
       'servicio-empresa': 'Hola, quiero información sobre constitución de empresas en Villavicencio.',
       'servicio-constitucional': 'Hola, necesito orientación sobre acciones constitucionales o tutelas.',
       'servicio-conciliacion': 'Hola, quiero resolver un conflicto por conciliación.',
-      'servicio-asesoria': 'Hola, quiero solicitar una asesoría jurídica.'
+      'servicio-asesoria': 'Hola, quiero solicitar una asesoría jurídica.',
+      'equipo-sara': 'Hola, quiero hablar con la Dra. Sara Muñoz sobre un asunto de Derecho Público.',
+      'equipo-camilo': 'Hola, quiero hablar con el Dr. Camilo Sáenz sobre un asunto de Derecho Privado.',
+      'equipo-raul': 'Hola, quiero hablar con el Dr. Raúl González sobre un asunto de Legaltech.'
     }
   };
 
