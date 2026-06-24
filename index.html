@@ -1,0 +1,839 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- SEO -->
+  <title>Abogados en Villavicencio | Constitución de empresas, conciliación y asesoría jurídica</title>
+  <meta name="description" content="Tamara &amp; Piñeros, abogados asociados en Villavicencio. Constitución de empresas, acciones constitucionales, conciliación y asesoría jurídica en lenguaje claro." />
+  <meta name="keywords" content="abogados en Villavicencio, abogado en Villavicencio, constitución de empresas Villavicencio, conciliación en Villavicencio, asesoría jurídica Villavicencio, tutela abogado Villavicencio, acciones constitucionales Villavicencio" />
+  <link rel="canonical" href="https://tamaraypineros.netlify.app" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Tamara &amp; Piñeros — Abogados en Villavicencio" />
+  <meta property="og:description" content="Constitución de empresas, acciones constitucionales, conciliación y asesoría jurídica en lenguaje claro." />
+  <meta property="og:url" content="https://tamaraypineros.netlify.app" />
+  <meta property="og:image" content="https://tamaraypineros.netlify.app/portada-facebook.png" />
+  <meta property="og:locale" content="es_CO" />
+  <meta property="og:site_name" content="Tamara &amp; Piñeros" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tamara &amp; Piñeros — Abogados en Villavicencio" />
+  <meta name="twitter:description" content="Constitución de empresas, acciones constitucionales, conciliación y asesoría jurídica en lenguaje claro." />
+
+  <!-- Schema.org LocalBusiness / LegalService -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["LegalService", "LocalBusiness"],
+    "name": "Tamara & Piñeros",
+    "description": "Abogados asociados en Villavicencio especializados en constitución de empresas, acciones constitucionales, conciliación y asesoría jurídica.",
+    "url": "https://tamaraypineros.netlify.app",
+    "telephone": "+573224768106",
+    "areaServed": {
+      "@type": "City",
+      "name": "Villavicencio"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Villavicencio",
+      "addressRegion": "Meta",
+      "addressCountry": "CO"
+    },
+    "priceRange": "$$",
+    "image": "https://tamaraypineros.netlify.app/logo-monograma.png"
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@700;800&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css?v=20260623" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="logo-monograma.png" />
+  <link rel="apple-touch-icon" href="logo-monograma.png" />
+  <meta name="theme-color" content="#5A4FCF" />
+</head>
+<body>
+
+  <!-- Scroll progress indicator -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       HEADER
+       ============================================================ -->
+  <header class="site-header" id="header">
+    <div class="container header-inner">
+      <a class="brand" href="#hero" aria-label="Ir al inicio">
+        <img src="logo-monograma.png" alt="Monograma Tamara y Piñeros" width="44" height="44" />
+        <div class="brand-copy">
+          <strong>Tamara &amp; Piñeros</strong>
+          <span>Abogados Asociados · Villavicencio</span>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Navegación principal">
+        <a href="#servicios">Servicios</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#diferenciales">Diferenciales</a>
+        <a href="#casos">Casos</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <a class="btn btn-small btn-primary header-cta" href="#" data-whatsapp="header">WhatsApp</a>
+
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú de navegación" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       MOBILE SIDEBAR — slide-in navigation panel
+       ============================================================ -->
+  <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="mobile-sidebar">
+      <div class="mobile-sidebar-header">
+        <a class="mobile-sidebar-brand" href="#hero">
+          <img src="logo-monograma.png" alt="Monograma Tamara y Piñeros" width="36" height="36" />
+          <span>Tamara &amp; Piñeros</span>
+        </a>
+        <button class="mobile-overlay-close" id="mobileOverlayClose" aria-label="Cerrar menú de navegación">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <nav class="mobile-overlay-nav" aria-label="Navegación móvil">
+        <a href="#hero" class="mobile-overlay-link" style="--i:0">
+          <span class="mol-title">Inicio</span>
+          <span class="mol-desc">Bienvenida al despacho</span>
+        </a>
+        <a href="#servicios" class="mobile-overlay-link" style="--i:1">
+          <span class="mol-title">Servicios</span>
+          <span class="mol-desc">Constitución de empresas, tutelas, conciliación, asesoría jurídica</span>
+        </a>
+        <a href="#como-funciona" class="mobile-overlay-link" style="--i:2">
+          <span class="mol-title">Cómo funciona</span>
+          <span class="mol-desc">Nuestro proceso paso a paso</span>
+        </a>
+        <a href="#diferenciales" class="mobile-overlay-link" style="--i:3">
+          <span class="mol-title">Diferenciales</span>
+          <span class="mol-desc">Por qué somos diferentes</span>
+        </a>
+        <a href="#casos" class="mobile-overlay-link" style="--i:4">
+          <span class="mol-title">Casos frecuentes</span>
+          <span class="mol-desc">Situaciones comunes que resolvemos</span>
+        </a>
+        <a href="#faq" class="mobile-overlay-link" style="--i:5">
+          <span class="mol-title">FAQ</span>
+          <span class="mol-desc">Preguntas frecuentes</span>
+        </a>
+        <a href="#contacto" class="mobile-overlay-link" style="--i:6">
+          <span class="mol-title">Contacto</span>
+          <span class="mol-desc">Escríbenos y te orientamos sin costo</span>
+        </a>
+      </nav>
+      <div class="mobile-overlay-footer">
+        <a class="btn btn-primary" href="#" data-whatsapp="mobile">Escríbenos por WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-pattern" aria-hidden="true"></div>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow" data-reveal="fade-up" data-delay="0">ABOGADOS ASOCIADOS &middot; VILLAVICENCIO</p>
+        <h1 data-reveal="fade-up" data-delay="150">Derecho claro, rápido y <span class="highlight">sin vueltas.</span></h1>
+        <p class="lead" data-reveal="fade-up" data-delay="300">
+          Constitución de empresas, acciones constitucionales, conciliación y asesoría jurídica.
+          Te explicamos el camino en lenguaje simple y te decimos qué sigue.
+        </p>
+        <div class="hero-actions" data-reveal="fade-up" data-delay="450">
+          <a class="btn btn-primary" href="#" data-whatsapp="hero">Escríbenos por WhatsApp</a>
+          <a class="btn btn-secondary" href="#servicios">Ver servicios</a>
+        </div>
+        <div class="hero-chips" data-reveal="fade-up" data-delay="600">
+          <span>Lenguaje simple</span>
+          <span>Respuesta rápida</span>
+          <span>Atención práctica</span>
+          <span>Presencial y virtual</span>
+          <span>Ruta clara desde el inicio</span>
+        </div>
+      </div>
+
+      <aside class="hero-visual" data-reveal="fade-up" data-delay="200">
+        <div class="hero-image-wrap">
+          <img
+            src="perfil-1000.png"
+            alt="Tamara &amp; Piñeros — Abogados Asociados"
+            class="hero-image"
+            loading="lazy"
+          />
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <svg class="stat-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/>
+              <rect x="9" y="3" width="6" height="4" rx="1"/>
+              <path d="M9 14l2 2 4-4"/>
+            </svg>
+            <div class="stat-text">
+              <strong>Ruta clara</strong>
+              <p>Te orientamos sobre qué aplica, qué no y cuál es el siguiente paso.</p>
+            </div>
+          </div>
+          <div class="stat">
+            <svg class="stat-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+            <div class="stat-text">
+              <strong>Enfoque práctico</strong>
+              <p>Menos enredo, más claridad para personas, emprendedores y empresas.</p>
+            </div>
+          </div>
+          <div class="stat">
+            <svg class="stat-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            <div class="stat-text">
+              <strong>Atención local</strong>
+              <p>Villavicencio como base, con atención virtual según el asunto.</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TRUST BAR
+       ============================================================ -->
+  <section class="trust-bar" aria-label="Beneficios clave" data-reveal="fade-up">
+    <div class="container trust-items">
+      <span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        Lenguaje simple
+      </span>
+      <span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+        Respuesta rápida
+      </span>
+      <span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        Atención práctica
+      </span>
+      <span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+          <line x1="8" y1="21" x2="16" y2="21"/>
+          <line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>
+        Presencial y virtual
+      </span>
+      <span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="12" y1="2" x2="12" y2="6"/>
+          <line x1="12" y1="18" x2="12" y2="22"/>
+          <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/>
+          <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/>
+          <line x1="2" y1="12" x2="6" y2="12"/>
+          <line x1="18" y1="12" x2="22" y2="12"/>
+          <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/>
+          <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/>
+        </svg>
+        Ruta clara desde el inicio
+      </span>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SERVICES
+       ============================================================ -->
+  <section class="section" id="servicios">
+    <div class="container">
+      <div class="section-head" data-reveal="fade-up">
+        <p class="section-kicker">SERVICIOS</p>
+        <h2>Servicios jurídicos para personas y empresas</h2>
+        <p>No todo asunto necesita el mismo camino. Te ayudamos a identificar qué aplica y cuál es el siguiente paso.</p>
+      </div>
+
+      <div class="cards-grid">
+        <article class="card" data-reveal="fade-up" data-delay="0">
+          <div class="card-icon" aria-hidden="true">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <h3>Constitución de empresas</h3>
+          <p>Te orientamos para crear tu empresa con una ruta clara, documentos base y acompañamiento desde el inicio.</p>
+          <ul class="card-features">
+            <li>Trámite de registro mercantil</li>
+            <li>Elaboración de estatutos</li>
+            <li>Obtención de NIT y RUT</li>
+          </ul>
+          <a class="btn btn-primary btn-card" href="#" data-whatsapp="servicio-empresa">Quiero crear empresa</a>
+        </article>
+
+        <article class="card" data-reveal="fade-up" data-delay="100">
+          <div class="card-icon" aria-hidden="true">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3>Acciones constitucionales</h3>
+          <p>Si necesitas proteger o exigir un derecho, te ayudamos a revisar la vía adecuada y a actuar con criterio.</p>
+          <ul class="card-features">
+            <li>Revisión de la situación concreta</li>
+            <li>Identificación de la vía adecuada</li>
+            <li>Preparación y seguimiento de la acción</li>
+          </ul>
+          <a class="btn btn-primary btn-card" href="#" data-whatsapp="servicio-constitucional">Necesito orientación</a>
+        </article>
+
+        <article class="card" data-reveal="fade-up" data-delay="200">
+          <div class="card-icon" aria-hidden="true">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <h3>Conciliación</h3>
+          <p>Buscamos soluciones prácticas para resolver conflictos sin dar vueltas innecesarias.</p>
+          <ul class="card-features">
+            <li>Análisis del conflicto y posiciones</li>
+            <li>Preparación de la audiencia</li>
+            <li>Redacción del acta de acuerdo</li>
+          </ul>
+          <a class="btn btn-primary btn-card" href="#" data-whatsapp="servicio-conciliacion">Quiero resolver mi caso</a>
+        </article>
+
+        <article class="card" data-reveal="fade-up" data-delay="300">
+          <div class="card-icon" aria-hidden="true">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10 9 9 9 8 9"/>
+            </svg>
+          </div>
+          <h3>Asesoría jurídica</h3>
+          <p>Analizamos tu situación, te explicamos opciones y te ayudamos a tomar una decisión informada.</p>
+          <ul class="card-features">
+            <li>Análisis de tu caso particular</li>
+            <li>Explicación clara de opciones</li>
+            <li>Plan de acción concreto</li>
+          </ul>
+          <a class="btn btn-primary btn-card" href="#" data-whatsapp="servicio-asesoria">Quiero una asesoría</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SERVICIOS DETALLADOS — accordion
+       ============================================================ -->
+  <section class="section section-soft" id="servicios-detalle">
+    <div class="container">
+      <div class="section-head" data-reveal="fade-up">
+        <p class="section-kicker">SABER MAS</p>
+        <h2>Cuando necesitas cada servicio</h2>
+        <p>Te explicamos en qué situaciones aplicar cada servicio, cómo es el proceso y qué necesitas para empezar.</p>
+      </div>
+
+      <div class="details-grid" data-reveal="fade-up">
+        <div class="detail-item">
+          <button class="detail-question" aria-expanded="false">
+            <span class="detail-question-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+              </svg>
+            </span>
+            <span>Constitución de empresas</span>
+            <span class="detail-toggle" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </span>
+          </button>
+          <div class="detail-answer">
+            <div class="detail-answer-inner">
+              <div class="detail-col">
+                <h4>Cuándo aplica</h4>
+                <p>Si estás creando un negocio, constituyendo una sociedad o necesitas formalizar tu actividad comercial. Ideal para emprendedores, pequeñas y medianas empresas en Villavicencio y el Meta.</p>
+              </div>
+              <div class="detail-col">
+                <h4>Cómo es el proceso</h4>
+                <p>Te guiamos paso a paso: desde la definición del tipo societario hasta la obtención del NIT. Hacemos el seguimiento ante Cámara de Comercio y Dian.</p>
+              </div>
+              <div class="detail-col">
+                <h4>Qué necesitas</h4>
+                <p>Documentos de identificación, definición del objeto social y actividad económica. Nosotros nos encargamos del resto.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-item">
+          <button class="detail-question" aria-expanded="false">
+            <span class="detail-question-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </span>
+            <span>Acciones constitucionales</span>
+            <span class="detail-toggle" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </span>
+          </button>
+          <div class="detail-answer">
+            <div class="detail-answer-inner">
+              <div class="detail-col">
+                <h4>Cuándo aplica</h4>
+                <p>Si necesitas proteger un derecho fundamental mediante tutela, presentar un derecho de petición o actuar frente a una vía de hecho. También si requieres revisar la constitucionalidad de una norma.</p>
+              </div>
+              <div class="detail-col">
+                <h4>Cómo es el proceso</h4>
+                <p>Revisamos tu situación, identificamos la acción constitucional adecuada, preparamos los escritos y hacemos seguimiento hasta la decisión.</p>
+              </div>
+              <div class="detail-col">
+                <h4>Qué necesitas</h4>
+                <p>Descripción clara de los hechos, documentos de soporte si existen, e identificación de la entidad o autoridad involucrada.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-item">
+          <button class="detail-question" aria-expanded="false">
+            <span class="detail-question-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+            </span>
+            <span>Conciliacion</span>
+            <span class="detail-toggle" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </span>
+          </button>
+          <div class="detail-answer">
+            <div class="detail-answer-inner">
+              <div class="detail-col">
+                <h4>Cuándo aplica</h4>
+                <p>Si tienes un conflicto con otra persona, empresa o entidad y quieres resolverlo sin llegar a un proceso judicial. Ideal para asuntos civiles, comerciales, de familia y vecindad.</p>
+              </div>
+              <div class="detail-col">
+                <h4>Cómo es el proceso</h4>
+                <p>Analizamos el conflicto, preparamos la audiencia de conciliación, te acompañamos durante la sesión y redactamos el acta con los acuerdos alcanzados.</p>
+              </div>
+              <div class="detail-col">
+                <h4>Qué necesitas</h4>
+                <p>Identificación de las partes involucradas, documentos relacionados con el conflicto y disposición para buscar un acuerdo.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-item">
+          <button class="detail-question" aria-expanded="false">
+            <span class="detail-question-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+              </svg>
+            </span>
+            <span>Asesoría jurídica</span>
+            <span class="detail-toggle" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </span>
+          </button>
+          <div class="detail-answer">
+            <div class="detail-answer-inner">
+              <div class="detail-col">
+                <h4>Cuándo aplica</h4>
+                <p>Si tienes dudas sobre tu situación jurídica, necesitas revisar un contrato, saber si te conviene demandar o simplemente quieres tomar una decisión informada con respaldo legal.</p>
+              </div>
+              <div class="detail-col">
+                <h4>Cómo es el proceso</h4>
+                <p>Escuchamos tu caso, analizamos la documentación, te explicamos las opciones disponibles en lenguaje claro y definimos juntos el plan de acción.</p>
+              </div>
+              <div class="detail-col">
+                <h4>Qué necesitas</h4>
+                <p>Los documentos relacionados con tu consulta y una descripción clara de la situación. Con eso basta para empezar.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section divider -->
+  <div class="section-divider" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       HOW IT WORKS
+       ============================================================ -->
+  <section class="section section-alt" id="como-funciona">
+    <div class="container">
+      <div class="section-head narrow" data-reveal="fade-up">
+        <p class="section-kicker">PROCESO</p>
+        <h2>Asi trabajamos</h2>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step" data-reveal="fade-up" data-delay="0">
+          <span class="step-number">1</span>
+          <h3>Nos cuentas tu caso</h3>
+          <p>Por WhatsApp, formulario o llamada.</p>
+        </div>
+        <div class="step" data-reveal="fade-up" data-delay="150">
+          <span class="step-number">2</span>
+          <h3>Te decimos qué aplica</h3>
+          <p>Sin enredos ni lenguaje innecesario.</p>
+        </div>
+        <div class="step" data-reveal="fade-up" data-delay="300">
+          <span class="step-number">3</span>
+          <h3>Definimos el siguiente paso</h3>
+          <p>Con una ruta clara para avanzar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHY CHOOSE US (DIFFERENTIALS)
+       ============================================================ -->
+  <section class="section" id="diferenciales">
+    <div class="container">
+      <div class="section-head narrow" data-reveal="fade-up">
+        <p class="section-kicker">DIFERENCIALES</p>
+        <h2>Una forma más clara de recibir ayuda jurídica</h2>
+      </div>
+
+      <div class="reasons-grid">
+        <div class="reason" data-reveal="fade-up" data-delay="0">
+          <h3>Hablamos claro</h3>
+          <p>Explicamos el problema y la ruta sin tecnicismos innecesarios.</p>
+        </div>
+        <div class="reason" data-reveal="fade-up" data-delay="100">
+          <h3>Respondemos con enfoque práctico</h3>
+          <p>Nos enfocamos en qué hacer, qué evitar y qué sigue.</p>
+        </div>
+        <div class="reason" data-reveal="fade-up" data-delay="200">
+          <h3>Atencion cercana y seria</h3>
+          <p>Trato profesional, comunicacion simple y criterio juridico.</p>
+        </div>
+        <div class="reason" data-reveal="fade-up" data-delay="300">
+          <h3>Menos fricción, más claridad</h3>
+          <p>Menos vueltas para empezar. Mas orden desde el primer contacto.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FREQUENT CASES
+       ============================================================ -->
+  <section class="section section-soft" id="casos">
+    <div class="container">
+      <div class="section-head" data-reveal="fade-up">
+        <p class="section-kicker">CASOS FRECUENTES</p>
+        <h2>Tal vez llegaste por algo como esto</h2>
+      </div>
+
+      <div class="case-list" data-reveal="fade-up">
+        <div class="case-item" data-service="empresa" tabindex="0" role="button" aria-label="Ver más sobre constitución de empresas">
+          <svg class="case-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+          </svg>
+          <span>Quiero constituir una empresa y no sé qué necesito.</span>
+          <svg class="case-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </div>
+        <div class="case-item" data-service="constitucional" tabindex="0" role="button" aria-label="Ver más sobre acciones constitucionales">
+          <svg class="case-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span>Necesito orientación para una tutela o derecho de petición.</span>
+          <svg class="case-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </div>
+        <div class="case-item" data-service="conciliacion" tabindex="0" role="button" aria-label="Ver más sobre conciliación">
+          <svg class="case-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          <span>Quiero intentar una conciliacion antes de escalar el conflicto.</span>
+          <svg class="case-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </div>
+        <div class="case-item" data-service="asesoria" tabindex="0" role="button" aria-label="Ver más sobre asesoría jurídica">
+          <svg class="case-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+          <span>Necesito revisar mi situación jurídica antes de tomar una decisión.</span>
+          <svg class="case-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section divider -->
+  <div class="section-divider section-divider--flip" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       FAQ
+       ============================================================ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-head" data-reveal="fade-up">
+        <p class="section-kicker">FAQ</p>
+        <h2>Preguntas frecuentes</h2>
+      </div>
+
+      <div class="faq-grid" data-reveal="fade-up">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Atienden solo en Villavicencio?</span>
+            <span class="faq-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <p>Atendemos en Villavicencio y también de forma virtual, según el tipo de asunto.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Puedo escribir por WhatsApp primero?</span>
+            <span class="faq-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <p>Si. Ese es el canal más rápido para una orientación inicial.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Qué debo enviar por WhatsApp?</span>
+            <span class="faq-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <p>Un resumen breve del caso o necesidad, tus datos de contacto y, si aplica, documentos basicos.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Puedo empezar aunque no sepa qué servicio necesito?</span>
+            <span class="faq-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <p>Si. Revisamos tu situación y te orientamos sobre la vía que corresponda.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>La orientación inicial reemplaza el análisis completo del caso?</span>
+            <span class="faq-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <p>No necesariamente. El alcance depende del asunto y de la revisión concreta de la información.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACT
+       ============================================================ -->
+  <section class="section contact-section" id="contacto">
+    <div class="container contact-grid">
+      <div class="contact-cta" data-reveal="fade-up">
+        <p class="section-kicker">CONTACTO</p>
+        <h2>Cuéntanos tu caso o tu necesidad</h2>
+        <p>Escríbenos y te orientamos sobre el camino más adecuado para empezar.</p>
+        <a class="btn btn-whatsapp" href="#" data-whatsapp="contact">Hablar por WhatsApp</a>
+        <p class="note">Atención inicial en lenguaje claro. Presencial y virtual. Tus datos serán usados para contactarte y atender tu solicitud, conforme a nuestra política de tratamiento de datos.</p>
+      </div>
+
+      <form class="contact-form" id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate data-reveal="fade-up" data-delay="150">
+        <input type="hidden" name="form-name" value="contact" />
+        <p class="visually-hidden" aria-hidden="true">
+          <label>No llenar este campo si eres humano: <input name="bot-field" /></label>
+        </p>
+        <h3>Déjanos tus datos</h3>
+
+        <div class="form-group">
+          <label for="form-name">Nombre completo</label>
+          <input type="text" id="form-name" name="name" placeholder="Tu nombre" required autocomplete="name" />
+          <span class="error-message">Por favor ingresa tu nombre.</span>
+        </div>
+
+        <div class="form-group">
+          <label for="form-phone">Teléfono</label>
+          <input type="tel" id="form-phone" name="phone" placeholder="Tu numero" required autocomplete="tel" />
+          <span class="error-message">Por favor ingresa un teléfono válido.</span>
+        </div>
+
+        <div class="form-group">
+          <label for="form-email">Correo electrónico</label>
+          <input type="email" id="form-email" name="email" placeholder="Tu correo" required autocomplete="email" />
+          <span class="error-message">Por favor ingresa un correo electrónico válido.</span>
+        </div>
+
+        <div class="form-group">
+          <label for="form-subject">Tipo de asunto</label>
+          <select id="form-subject" name="subject" required>
+            <option value="">Selecciona una opción</option>
+            <option value="constitucion">Constitución de empresas</option>
+            <option value="constitucionales">Acciones constitucionales</option>
+            <option value="conciliacion">Conciliación</option>
+            <option value="asesoria">Asesoría jurídica</option>
+            <option value="otro">Otro</option>
+          </select>
+          <span class="error-message">Por favor selecciona un tipo de asunto.</span>
+        </div>
+
+        <div class="form-group">
+          <label for="form-message">Cuéntanos brevemente tu necesidad</label>
+          <textarea id="form-message" name="message" rows="4" placeholder="Describe tu caso o necesidad" required></textarea>
+          <span class="error-message">Por favor describe brevemente tu necesidad.</span>
+        </div>
+
+        <div class="form-group form-checkbox">
+          <input type="checkbox" id="form-consent" name="consent" required />
+          <label for="form-consent">
+            Autorizo el tratamiento de mis datos personales conforme a la
+            <a href="#" aria-label="Política de tratamiento de datos">política de tratamiento de datos personales</a>.
+          </label>
+          <span class="error-message">Debes aceptar la política de tratamiento de datos.</span>
+        </div>
+
+        <div class="form-submit">
+          <button class="btn btn-primary" type="submit">Solicitar contacto</button>
+        </div>
+
+        <div class="form-success" id="formSuccess">
+          <h3>Gracias por escribirnos</h3>
+          <p>Hemos recibido tu solicitud. Te contactaremos pronto para darte orientación sobre tu caso.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHATSAPP FLOATING BUTTON (mobile)
+       ============================================================ -->
+  <a class="whatsapp-float" href="#" data-whatsapp="float" aria-label="Contactar por WhatsApp">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+    </svg>
+  </a>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <strong>Tamara &amp; Pi&ntilde;eros</strong>
+          <p>Abogados Asociados &middot; Villavicencio</p>
+        </div>
+        <div class="footer-services">
+          Constitución de empresas &middot; Acciones constitucionales &middot; Conciliación &middot; Asesoría jurídica
+        </div>
+        <div class="footer-links">
+          <a href="#">Política de tratamiento de datos</a>
+          <a href="#">Aviso de privacidad</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>La información del sitio es de carácter general y no constituye por sí sola concepto jurídico definitivo ni reemplaza el estudio particular de cada asunto.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js?v=20260623"></script>
+</body>
+</html>
