@@ -318,23 +318,31 @@
       </div>
 
       <div class="cards-grid">
-        <article class="card" data-reveal="fade-up" data-delay="0">
+        <!-- 1. Asesoría jurídica express — Express tier -->
+        <article class="card card--tier-express" data-tier="express" data-reveal="fade-up" data-delay="0">
+          <span class="tier-badge">Express</span>
           <div class="card-icon" aria-hidden="true">
             <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
             </svg>
           </div>
-          <h3>Constitución de empresas</h3>
-          <p>Te orientamos para crear tu empresa con una ruta clara, documentos base y acompañamiento desde el inicio.</p>
+          <h3>Asesoría jurídica express</h3>
+          <p>Orientación rápida para resolver dudas puntuales y tomar decisiones informadas.</p>
           <ul class="card-features">
-            <li>Trámite de registro mercantil</li>
-            <li>Elaboración de estatutos</li>
-            <li>Obtención de NIT y RUT</li>
+            <li>Consulta inicial enfocada</li>
+            <li>Respuesta en lenguaje claro</li>
+            <li>Ruta de acción concreta</li>
           </ul>
-          <a class="btn btn-primary btn-card" href="https://wa.me/573224768106?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20constituci%C3%B3n%20de%20empresas%20en%20Villavicencio." data-whatsapp="servicio-empresa">Quiero crear empresa</a>
+          <div class="card-pricing">
+            <span class="pricing-ref">Ref. CONALBOS: $200.000 – $500.000</span>
+            <span class="pricing-badge">35% dto. · primeros 3 meses</span>
+          </div>
+          <a class="btn btn-primary btn-card" href="#" data-intake="servicio-asesoria-express" data-service="asesoria-express">Solicitar asesoría express</a>
         </article>
 
-        <article class="card" data-reveal="fade-up" data-delay="100">
+        <!-- 2. Acciones constitucionales — Express tier -->
+        <article class="card card--tier-express" data-tier="express" data-reveal="fade-up" data-delay="100">
+          <span class="tier-badge">Express</span>
           <div class="card-icon" aria-hidden="true">
             <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
@@ -347,27 +355,61 @@
             <li>Identificación de la vía adecuada</li>
             <li>Preparación y seguimiento de la acción</li>
           </ul>
-          <a class="btn btn-primary btn-card" href="https://wa.me/573224768106?text=Hola%2C%20necesito%20orientaci%C3%B3n%20sobre%20acciones%20constitucionales%20o%20tutelas." data-whatsapp="servicio-constitucional">Necesito orientación</a>
+          <div class="card-pricing">
+            <span class="pricing-ref">Ref. CONALBOS: $300.000 – $800.000</span>
+            <span class="pricing-badge">35% dto. · primeros 3 meses</span>
+          </div>
+          <a class="btn btn-primary btn-card" href="#" data-intake="servicio-constitucional" data-service="constitucional">Necesito orientación</a>
         </article>
 
-        <article class="card" data-reveal="fade-up" data-delay="200">
+        <!-- 3. Conciliación / MASC — Medio tier -->
+        <article class="card card--tier-medio" data-tier="medio" data-reveal="fade-up" data-delay="200">
+          <span class="tier-badge">Medio</span>
           <div class="card-icon" aria-hidden="true">
             <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
               <polyline points="22 4 12 14.01 9 11.01"/>
             </svg>
           </div>
-          <h3>Conciliación</h3>
+          <h3>Conciliación / MASC</h3>
           <p>Buscamos soluciones prácticas para resolver conflictos sin dar vueltas innecesarias.</p>
           <ul class="card-features">
             <li>Análisis del conflicto y posiciones</li>
             <li>Preparación de la audiencia</li>
             <li>Redacción del acta de acuerdo</li>
           </ul>
-          <a class="btn btn-primary btn-card" href="https://wa.me/573224768106?text=Hola%2C%20quiero%20resolver%20un%20conflicto%20por%20conciliaci%C3%B3n." data-whatsapp="servicio-conciliacion">Quiero resolver mi caso</a>
+          <div class="card-pricing">
+            <span class="pricing-ref">Ref. CONALBOS: $500.000 – $1.200.000</span>
+            <span class="pricing-badge">35% dto. · primeros 3 meses</span>
+          </div>
+          <a class="btn btn-primary btn-card" href="#" data-intake="servicio-conciliacion" data-service="conciliacion">Quiero resolver mi caso</a>
         </article>
 
-        <article class="card" data-reveal="fade-up" data-delay="300">
+        <!-- 4. Constitución de empresas — Medio tier -->
+        <article class="card card--tier-medio" data-tier="medio" data-reveal="fade-up" data-delay="300">
+          <span class="tier-badge">Medio</span>
+          <div class="card-icon" aria-hidden="true">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <h3>Constitución de empresas</h3>
+          <p>Te orientamos para crear tu empresa con una ruta clara, documentos base y acompañamiento desde el inicio.</p>
+          <ul class="card-features">
+            <li>Trámite de registro mercantil</li>
+            <li>Elaboración de estatutos</li>
+            <li>Obtención de NIT y RUT</li>
+          </ul>
+          <div class="card-pricing">
+            <span class="pricing-ref">Ref. CONALBOS: $800.000 – $1.500.000</span>
+            <span class="pricing-badge">35% dto. · primeros 3 meses</span>
+          </div>
+          <a class="btn btn-primary btn-card" href="#" data-intake="servicio-empresa" data-service="empresa">Quiero crear empresa</a>
+        </article>
+
+        <!-- 5. Asesoría jurídica integral — Premium tier -->
+        <article class="card card--tier-premium" data-tier="premium" data-reveal="fade-up" data-delay="400">
+          <span class="tier-badge">Premium</span>
           <div class="card-icon" aria-hidden="true">
             <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
@@ -377,14 +419,18 @@
               <polyline points="10 9 9 9 8 9"/>
             </svg>
           </div>
-          <h3>Asesoría jurídica</h3>
-          <p>Analizamos tu situación, te explicamos opciones y te ayudamos a tomar una decisión informada.</p>
+          <h3>Asesoría jurídica integral</h3>
+          <p>Acompañamiento completo: análisis profundo, estrategia y seguimiento continuo de tu asunto.</p>
           <ul class="card-features">
-            <li>Análisis de tu caso particular</li>
-            <li>Explicación clara de opciones</li>
-            <li>Plan de acción concreto</li>
+            <li>Análisis exhaustivo del caso</li>
+            <li>Estrategia jurídica personalizada</li>
+            <li>Seguimiento y acompañamiento continuo</li>
           </ul>
-          <a class="btn btn-primary btn-card" href="https://wa.me/573224768106?text=Hola%2C%20quiero%20solicitar%20una%20asesor%C3%ADa%20jur%C3%ADdica." data-whatsapp="servicio-asesoria">Quiero una asesoría</a>
+          <div class="card-pricing">
+            <span class="pricing-ref">Ref. CONALBOS: $1.200.000 – $3.000.000</span>
+            <span class="pricing-badge">35% dto. · primeros 3 meses</span>
+          </div>
+          <a class="btn btn-primary btn-card" href="#" data-intake="servicio-asesoria-integral" data-service="asesoria-integral">Quiero asesoría integral</a>
         </article>
       </div>
     </div>
@@ -541,6 +587,58 @@
     </div>
   </section>
 
+  <!-- ============================================================
+       LEAD MAGNETS — free guides
+       ============================================================ -->
+  <section class="section section-alt" id="recursos">
+    <div class="container">
+      <div class="section-head" data-reveal="fade-up">
+        <p class="section-kicker">RECURSOS GRATUITOS</p>
+        <h2>Guías prácticas para empezar con claridad</h2>
+        <p>Descarga guías elaboradas por nuestro equipo para orientarte antes de dar el primer paso.</p>
+      </div>
+
+      <div class="cards-grid lead-magnets-grid">
+        <article class="card lead-magnet-card" data-asset="assets/guides/guia-arriendo.pdf" data-reveal="fade-up" data-delay="0">
+          <div class="card-icon" aria-hidden="true">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <h3>Guía de arriendo</h3>
+          <p>Lo que necesitas saber antes de firmar un contrato de arrendamiento: derechos, obligaciones y cláusulas clave.</p>
+          <a class="btn btn-secondary btn-card lead-magnet-cta" href="#" data-asset-download="assets/guides/guia-arriendo.pdf">Próximamente</a>
+        </article>
+
+        <article class="card lead-magnet-card" data-asset="assets/guides/guia-derecho-peticion.pdf" data-reveal="fade-up" data-delay="100">
+          <div class="card-icon" aria-hidden="true">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+          </div>
+          <h3>Guía de derecho de petición</h3>
+          <p>Cómo redactar y presentar un derecho de petición efectivo ante entidades públicas o privadas.</p>
+          <a class="btn btn-secondary btn-card lead-magnet-cta" href="#" data-asset-download="assets/guides/guia-derecho-peticion.pdf">Próximamente</a>
+        </article>
+
+        <article class="card lead-magnet-card" data-asset="assets/guides/guia-creacion-empresa.pdf" data-reveal="fade-up" data-delay="200">
+          <div class="card-icon" aria-hidden="true">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <h3>Guía de creación de empresa</h3>
+          <p>Paso a paso para constituir tu empresa en Colombia: tipos societarios, documentos y trámites esenciales.</p>
+          <a class="btn btn-secondary btn-card lead-magnet-cta" href="#" data-asset-download="assets/guides/guia-creacion-empresa.pdf">Próximamente</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- Section divider -->
   <div class="section-divider" aria-hidden="true"></div>
 
@@ -552,25 +650,116 @@
       <div class="section-head narrow" data-reveal="fade-up">
         <p class="section-kicker">PROCESO</p>
         <h2>Así trabajamos</h2>
+        <p>Un recorrido claro desde el primer contacto hasta la resolución de tu asunto.</p>
       </div>
 
-      <div class="steps-grid">
-        <div class="step" data-reveal="fade-up" data-delay="0">
+      <ol class="timeline" data-reveal="fade-up">
+        <li class="timeline-step">
           <span class="step-number">1</span>
-          <h3>Nos cuentas tu caso</h3>
-        <p>Por WhatsApp o llamada.</p>
-        </div>
-        <div class="step" data-reveal="fade-up" data-delay="150">
+          <div class="timeline-content">
+            <h3>Step 1</h3>
+            <p>Placeholder — content pending.</p>
+          </div>
+        </li>
+        <li class="timeline-step">
           <span class="step-number">2</span>
-          <h3>Te decimos qué aplica</h3>
-          <p>Sin enredos ni lenguaje innecesario.</p>
-        </div>
-        <div class="step" data-reveal="fade-up" data-delay="300">
+          <div class="timeline-content">
+            <h3>Step 2</h3>
+            <p>Placeholder — content pending.</p>
+          </div>
+        </li>
+        <li class="timeline-step">
           <span class="step-number">3</span>
-          <h3>Definimos el siguiente paso</h3>
-          <p>Con una ruta clara para avanzar.</p>
-        </div>
-      </div>
+          <div class="timeline-content">
+            <h3>Step 3</h3>
+            <p>Placeholder — content pending.</p>
+          </div>
+        </li>
+        <li class="timeline-step">
+          <span class="step-number">4</span>
+          <div class="timeline-content">
+            <h3>Step 4</h3>
+            <p>Placeholder — content pending.</p>
+          </div>
+        </li>
+        <li class="timeline-step">
+          <span class="step-number">5</span>
+          <div class="timeline-content">
+            <h3>Step 5</h3>
+            <p>Placeholder — content pending.</p>
+          </div>
+        </li>
+        <li class="timeline-step">
+          <span class="step-number">6</span>
+          <div class="timeline-content">
+            <h3>Step 6</h3>
+            <p>Placeholder — content pending.</p>
+          </div>
+        </li>
+        <li class="timeline-step">
+          <span class="step-number">7</span>
+          <div class="timeline-content">
+            <h3>Step 7</h3>
+            <p>Placeholder — content pending.</p>
+          </div>
+        </li>
+        <li class="timeline-step">
+          <span class="step-number">8</span>
+          <div class="timeline-content">
+            <h3>Step 8</h3>
+            <p>Placeholder — content pending.</p>
+          </div>
+        </li>
+        <li class="timeline-step">
+          <span class="step-number">9</span>
+          <div class="timeline-content">
+            <h3>Step 9</h3>
+            <p>Placeholder — content pending.</p>
+          </div>
+        </li>
+        <li class="timeline-step">
+          <span class="step-number">10</span>
+          <div class="timeline-content">
+            <h3>Step 10</h3>
+            <p>Placeholder — content pending.</p>
+          </div>
+        </li>
+        <li class="timeline-step">
+          <span class="step-number">11</span>
+          <div class="timeline-content">
+            <h3>Step 11</h3>
+            <p>Placeholder — content pending.</p>
+          </div>
+        </li>
+        <li class="timeline-step">
+          <span class="step-number">12</span>
+          <div class="timeline-content">
+            <h3>Step 12</h3>
+            <p>Placeholder — content pending.</p>
+          </div>
+        </li>
+        <li class="timeline-step">
+          <span class="step-number">13</span>
+          <div class="timeline-content">
+            <h3>Step 13</h3>
+            <p>Placeholder — content pending.</p>
+          </div>
+        </li>
+        <li class="timeline-step">
+          <span class="step-number">14</span>
+          <div class="timeline-content">
+            <h3>Step 14</h3>
+            <p>Placeholder — content pending.</p>
+          </div>
+        </li>
+        <li class="timeline-step">
+          <span class="step-number">15</span>
+          <div class="timeline-content">
+            <h3>Step 15</h3>
+            <p>Placeholder — content pending.</p>
+          </div>
+        </li>
+      </ol>
     </div>
   </section>
 
@@ -837,6 +1026,75 @@
   </section>
 
   </main>
+
+  <!-- ============================================================
+       INTAKE MODAL — Netlify Forms + WhatsApp redirect
+       ============================================================ -->
+  <div class="intake-modal" id="intakeModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="intakeModalTitle">
+    <div class="intake-modal-backdrop" id="intakeModalBackdrop"></div>
+    <div class="intake-modal-panel">
+      <div class="intake-modal-header">
+        <h2 id="intakeModalTitle">Solicita tu servicio</h2>
+        <button class="intake-modal-close" id="intakeModalClose" aria-label="Cerrar formulario">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <form name="intake" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="intakeForm" class="contact-form" novalidate>
+        <!-- Netlify hidden fields -->
+        <input type="hidden" name="form-name" value="intake" />
+        <p class="visually-hidden" aria-hidden="true">
+          <label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+        </p>
+
+        <div class="form-group">
+          <label for="intake-nombre">Nombre completo</label>
+          <input type="text" id="intake-nombre" name="nombre" required autocomplete="name" placeholder="Tu nombre" />
+          <span class="error-message" id="error-nombre" aria-live="polite"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="intake-ciudad">Ciudad</label>
+          <input type="text" id="intake-ciudad" name="ciudad" required autocomplete="address-level2" placeholder="Tu ciudad" />
+          <span class="error-message" id="error-ciudad" aria-live="polite"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="intake-servicio">Servicio de interés</label>
+          <select id="intake-servicio" name="servicio" required>
+            <option value="" disabled selected>Selecciona un servicio</option>
+            <option value="asesoria-express">Asesoría jurídica express</option>
+            <option value="constitucional">Acciones constitucionales</option>
+            <option value="conciliacion">Conciliación / MASC</option>
+            <option value="empresa">Constitución de empresas</option>
+            <option value="asesoria-integral">Asesoría jurídica integral</option>
+          </select>
+          <span class="error-message" id="error-servicio" aria-live="polite"></span>
+        </div>
+
+        <div class="form-checkbox">
+          <input type="checkbox" id="intake-consent" name="consent" required checked />
+          <label for="intake-consent">
+            Autorizo el tratamiento de mis datos personales conforme a la
+            <a href="/privacy.html" target="_blank" rel="noopener noreferrer">política de tratamiento de datos</a>.
+          </label>
+        </div>
+
+        <div class="form-submit">
+          <button type="submit" class="btn btn-primary" id="intakeSubmit">Enviar solicitud</button>
+        </div>
+
+        <div class="form-success" id="intakeSuccess">
+          <h3>Solicitud enviada</h3>
+          <p>Te contactaremos pronto. También puedes escribirnos por WhatsApp para una respuesta más rápida.</p>
+          <a class="btn btn-whatsapp" href="https://wa.me/573224768106" data-whatsapp="intake-success">Continuar por WhatsApp</a>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <!-- ============================================================
        WHATSAPP FLOATING BUTTON (mobile)
