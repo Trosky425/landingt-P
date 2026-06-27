@@ -301,7 +301,7 @@
 
         // Suppress click when asset is unavailable (href still "#" or disabled)
         cta.addEventListener('click', function (e) {
-          if (cta.classList.contains('btn-disabled') || cta.getAttribute('href') === '#') {
+          if (cta.classList.contains('is-disabled') || cta.getAttribute('href') === '#') {
             e.preventDefault();
           }
         });
@@ -315,7 +315,7 @@
                 cta.textContent = 'Descargar guía';
                 cta.href = assetPath;
                 cta.setAttribute('download', '');
-                cta.classList.remove('btn-disabled');
+                cta.classList.remove('is-disabled');
                 cta.classList.add('btn-available');
               }
               // else: keep "Próximamente" + disabled state (default from HTML)
