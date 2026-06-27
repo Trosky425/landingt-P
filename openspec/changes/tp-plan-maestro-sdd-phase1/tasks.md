@@ -21,7 +21,7 @@
 
 ## Phase 4: Manual Verification
 
-- [ ] 4.1 Run a manual checklist against `index.html`, `styles.css`, `script.js`, and `privacy.html`: 5 tier cards + pricing, 3 lead-magnet states, intake validation/consent, Netlify submit → WhatsApp, direct CTA bypass, timeline reduced-motion, and mobile layout. Depends: 2.1–3.3. Effort: 1.5h.
+- [x] 4.1 Run a manual checklist against `index.html`, `styles.css`, `script.js`, and `privacy.html`: 5 tier cards + pricing, 3 lead-magnet states, intake validation/consent, Netlify submit → WhatsApp, direct CTA bypass, timeline reduced-motion, and mobile layout. Depends: 2.1–3.3. Effort: 1.5h.
 
 ## Review Workload Forecast
 
