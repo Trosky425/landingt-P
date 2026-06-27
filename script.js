@@ -19,9 +19,11 @@
       mobile: 'Hola, quiero orientación sobre un asunto jurídico.',
       contact: 'Hola, quiero orientación sobre un asunto jurídico. Mi nombre es [NOMBRE] y necesito información sobre [TEMA].',
       float: 'Hola, quiero orientación sobre un asunto jurídico.',
-      'servicio-empresa': 'Hola, quiero información sobre constitución de empresas en Villavicencio.',
+      'servicio-asesoria-express': 'Hola, quiero solicitar una asesoría jurídica express.',
       'servicio-constitucional': 'Hola, necesito orientación sobre acciones constitucionales o tutelas.',
       'servicio-conciliacion': 'Hola, quiero resolver un conflicto por conciliación.',
+      'servicio-empresa': 'Hola, quiero información sobre constitución de empresas en Villavicencio.',
+      'servicio-asesoria-integral': 'Hola, quiero solicitar una asesoría jurídica integral.',
       'servicio-asesoria': 'Hola, quiero solicitar una asesoría jurídica.',
       'equipo-sara': 'Hola, quiero hablar con la Dra. Sara Muñoz sobre un asunto de Derecho Público.',
       'equipo-camilo': 'Hola, quiero hablar con el Dr. Camilo Sáenz sobre un asunto de Derecho Privado.',
@@ -48,9 +50,14 @@
   }
 
   function setupWhatsAppLinks() {
+    // Direct WhatsApp links — header, float, hero, mobile, team, contact
+    // Skip links inside the intake modal (handled separately)
     var links = document.querySelectorAll('[data-whatsapp]');
     for (var i = 0; i < links.length; i++) {
       (function (link) {
+        // Skip intake modal internal links
+        if (link.closest && link.closest('.intake-modal')) return;
+
         link.addEventListener('click', function (e) {
           e.preventDefault();
           var context = link.getAttribute('data-whatsapp');
@@ -58,6 +65,302 @@
           openExternalWindow(url);
         });
       })(links[i]);
+    }
+
+    // Service card CTAs with data-intake — open intake modal instead of direct redirect
+    var intakeLinks = document.querySelectorAll('[data-intake]');
+    for (var j = 0; j < intakeLinks.length; j++) {
+      (function (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          var intakeContext = link.getAttribute('data-intake');
+          var serviceKey = link.getAttribute('data-service') || '';
+          openIntakeModal(intakeContext, serviceKey);
+        });
+      })(intakeLinks[j]);
+    }
+  }
+
+  /* ============================================================
+     INTAKE MODAL — validation, Netlify submit, wa.me redirect
+     ============================================================ */
+  var intakeModal = null;
+  var intakeForm = null;
+  var intakeSubmitBtn = null;
+  var intakeSuccess = null;
+
+  function openIntakeModal(context, serviceKey) {
+    if (!intakeModal) return;
+    intakeModal.setAttribute('aria-hidden', 'false');
+    intakeModal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+
+    // Pre-select the service if available
+    var serviceSelect = intakeForm.querySelector('[name="servicio"]');
+    if (serviceSelect && serviceKey) {
+      serviceSelect.value = serviceKey;
+    }
+
+    // Reset form state
+    intakeForm.reset();
+    if (serviceSelect && serviceKey) {
+      serviceSelect.value = serviceKey;
+    }
+    clearIntakeErrors();
+    intakeForm.style.display = '';
+    if (intakeSuccess) intakeSuccess.style.display = 'none';
+    if (intakeSubmitBtn) intakeSubmitBtn.disabled = false;
+
+    // Re-check consent (reset clears it)
+    var consentBox = intakeForm.querySelector('[name="consent"]');
+    if (consentBox) consentBox.checked = true;
+
+    // Focus first field
+    var firstField = intakeForm.querySelector('[name="nombre"]');
+    if (firstField) firstField.focus();
+  }
+
+  function closeIntakeModal() {
+    if (!intakeModal) return;
+    intakeModal.setAttribute('aria-hidden', 'true');
+    intakeModal.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  function clearIntakeErrors() {
+    var errors = intakeForm ? intakeForm.querySelectorAll('.error-message') : [];
+    for (var i = 0; i < errors.length; i++) {
+      errors[i].textContent = '';
+    }
+    var groups = intakeForm ? intakeForm.querySelectorAll('.form-group.has-error') : [];
+    for (var j = 0; j < groups.length; j++) {
+      groups[j].classList.remove('has-error');
+    }
+    var fields = intakeForm ? intakeForm.querySelectorAll('.form-group input, .form-group select') : [];
+    for (var k = 0; k < fields.length; k++) {
+      fields[k].classList.remove('is-invalid');
+    }
+  }
+
+  function showFieldError(fieldId, message) {
+    var field = document.getElementById(fieldId);
+    var errorEl = document.getElementById('error-' + fieldId.replace('intake-', ''));
+    if (field) field.classList.add('is-invalid');
+    if (errorEl) errorEl.textContent = message;
+    // Add .has-error to parent .form-group to reveal the error message via CSS
+    if (field) {
+      var group = field.closest('.form-group');
+      if (group) group.classList.add('has-error');
+    }
+  }
+
+  function validateIntakeForm() {
+    clearIntakeErrors();
+    var valid = true;
+
+    var nombre = intakeForm.querySelector('[name="nombre"]');
+    var ciudad = intakeForm.querySelector('[name="ciudad"]');
+    var servicio = intakeForm.querySelector('[name="servicio"]');
+    var consent = intakeForm.querySelector('[name="consent"]');
+
+    if (!nombre.value.trim()) {
+      showFieldError('intake-nombre', 'Ingresa tu nombre completo.');
+      valid = false;
+    }
+    if (!ciudad.value.trim()) {
+      showFieldError('intake-ciudad', 'Ingresa tu ciudad.');
+      valid = false;
+    }
+    if (!servicio.value) {
+      showFieldError('intake-servicio', 'Selecciona un servicio.');
+      valid = false;
+    }
+    if (!consent.checked) {
+      // Consent blocking — show inline message near checkbox
+      var consentGroup = intakeForm.querySelector('.form-checkbox');
+      var consentError = document.getElementById('error-consent');
+      if (consentGroup) {
+        consentGroup.classList.add('has-error');
+      }
+      if (consentError) {
+        consentError.textContent = 'Debes aceptar la política de tratamiento de datos.';
+      }
+      valid = false;
+    }
+
+    return valid;
+  }
+
+  function submitIntakeToNetlify(formData, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/');
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        callback(xhr.status >= 200 && xhr.status < 400 ? null : 'error', xhr);
+      }
+    };
+
+    // Build URL-encoded form data
+    var params = [];
+    formData.forEach(function (value, key) {
+      params.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+    });
+    xhr.send(params.join('&'));
+  }
+
+  function handleIntakeSubmit(e) {
+    if (e) e.preventDefault();
+
+    if (!validateIntakeForm()) return;
+
+    if (intakeSubmitBtn) {
+      intakeSubmitBtn.disabled = true;
+      intakeSubmitBtn.textContent = 'Enviando…';
+    }
+
+    var formData = new FormData(intakeForm);
+
+    submitIntakeToNetlify(formData, function (err) {
+      if (err) {
+        // On Netlify error — still redirect to WhatsApp as fallback
+        redirectToIntakeWhatsApp(formData);
+        return;
+      }
+
+      // Show success state
+      intakeForm.style.display = 'none';
+      if (intakeSuccess) {
+        intakeSuccess.style.display = '';
+        // Update the WhatsApp link in success state with service-specific message
+        var successLink = intakeSuccess.querySelector('[data-whatsapp]');
+        if (successLink) {
+          var servicio = formData.get('servicio');
+          var contextKey = 'servicio-' + servicio;
+          successLink.href = getWhatsAppUrl(contextKey);
+        }
+      }
+
+      // Also redirect after a short delay
+      setTimeout(function () {
+        redirectToIntakeWhatsApp(formData);
+      }, 1500);
+    });
+  }
+
+  function redirectToIntakeWhatsApp(formData) {
+    var servicio = formData.get('servicio');
+    var contextKey = 'servicio-' + servicio;
+    var url = getWhatsAppUrl(contextKey);
+    openExternalWindow(url);
+    closeIntakeModal();
+  }
+
+  function setupIntakeModal() {
+    intakeModal = document.getElementById('intakeModal');
+    if (!intakeModal) return;
+
+    intakeForm = document.getElementById('intakeForm');
+    intakeSubmitBtn = document.getElementById('intakeSubmit');
+    intakeSuccess = document.getElementById('intakeSuccess');
+
+    var closeBtn = document.getElementById('intakeModalClose');
+    var backdrop = document.getElementById('intakeModalBackdrop');
+
+    // Close handlers
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeIntakeModal);
+    }
+    if (backdrop) {
+      backdrop.addEventListener('click', closeIntakeModal);
+    }
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && intakeModal.classList.contains('is-open')) {
+        closeIntakeModal();
+      }
+    });
+
+    // Form submit handler
+    if (intakeForm) {
+      intakeForm.addEventListener('submit', handleIntakeSubmit);
+    }
+  }
+
+  /* ============================================================
+     LEAD MAGNETS — asset probing + CTA state
+     ============================================================ */
+  function setupLeadMagnets() {
+    var cards = document.querySelectorAll('.lead-magnet-card[data-asset]');
+    if (!cards.length) return;
+
+    for (var i = 0; i < cards.length; i++) {
+      (function (card) {
+        var assetPath = card.getAttribute('data-asset');
+        var cta = card.querySelector('[data-asset-download]');
+        if (!assetPath || !cta) return;
+
+        // Suppress click when asset is unavailable (href still "#" or disabled)
+        cta.addEventListener('click', function (e) {
+          if (cta.classList.contains('is-disabled') || cta.getAttribute('href') === '#') {
+            e.preventDefault();
+          }
+        });
+
+        // Probe asset via HEAD request
+        if (typeof fetch === 'function') {
+          fetch(assetPath, { method: 'HEAD' })
+            .then(function (response) {
+              if (response.ok) {
+                // Asset exists — enable download
+                cta.textContent = 'Descargar guía';
+                cta.href = assetPath;
+                cta.setAttribute('download', '');
+                cta.classList.remove('is-disabled');
+                cta.classList.add('btn-available');
+              }
+              // else: keep "Próximamente" + disabled state (default from HTML)
+            })
+            .catch(function () {
+              // Network error — keep placeholder state
+            });
+        }
+        // If fetch unavailable, keep "Próximamente" default
+      })(cards[i]);
+    }
+  }
+
+  /* ============================================================
+     TIMELINE — staggered step reveal
+     ============================================================ */
+  function setupTimeline() {
+    var timeline = document.querySelector('.timeline');
+    if (!timeline) return;
+
+    var steps = timeline.querySelectorAll('.timeline-step');
+    if (!steps.length) return;
+
+    var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      timeline.classList.add('is-revealed');
+      return;
+    }
+
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        for (var e = 0; e < entries.length; e++) {
+          if (entries[e].isIntersecting) {
+            timeline.classList.add('is-revealed');
+            observer.unobserve(timeline);
+          }
+        }
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -30px 0px'
+      });
+
+      observer.observe(timeline);
+    } else {
+      timeline.classList.add('is-revealed');
     }
   }
 
@@ -357,7 +660,10 @@
      INIT
      ============================================================ */
   function init() {
+    setupIntakeModal();
     setupWhatsAppLinks();
+    setupLeadMagnets();
+    setupTimeline();
     setupMobileNav();
     setupFAQ();
     setupDetailsAccordion();
