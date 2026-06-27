@@ -2421,6 +2421,11 @@ h1, h2, h3, h4 {
   border: 1px solid rgba(90, 79, 207, 0.1);
 }
 
+/* Consent error message spans full grid row */
+.form-checkbox.has-error .error-message {
+  grid-column: 1 / -1;
+}
+
 /* Intake field error states — extend existing .has-error pattern */
 .intake-modal .form-group.has-error input,
 .intake-modal .form-group.has-error select {

@@ -132,9 +132,13 @@
     for (var i = 0; i < errors.length; i++) {
       errors[i].textContent = '';
     }
+    var groups = intakeForm ? intakeForm.querySelectorAll('.form-group.has-error') : [];
+    for (var j = 0; j < groups.length; j++) {
+      groups[j].classList.remove('has-error');
+    }
     var fields = intakeForm ? intakeForm.querySelectorAll('.form-group input, .form-group select') : [];
-    for (var j = 0; j < fields.length; j++) {
-      fields[j].classList.remove('is-invalid');
+    for (var k = 0; k < fields.length; k++) {
+      fields[k].classList.remove('is-invalid');
     }
   }
 
@@ -143,6 +147,11 @@
     var errorEl = document.getElementById('error-' + fieldId.replace('intake-', ''));
     if (field) field.classList.add('is-invalid');
     if (errorEl) errorEl.textContent = message;
+    // Add .has-error to parent .form-group to reveal the error message via CSS
+    if (field) {
+      var group = field.closest('.form-group');
+      if (group) group.classList.add('has-error');
+    }
   }
 
   function validateIntakeForm() {
@@ -168,9 +177,13 @@
     }
     if (!consent.checked) {
       // Consent blocking — show inline message near checkbox
-      var consentLabel = intakeForm.querySelector('.form-checkbox label');
-      if (consentLabel) {
-        consentLabel.classList.add('is-invalid');
+      var consentGroup = intakeForm.querySelector('.form-checkbox');
+      var consentError = document.getElementById('error-consent');
+      if (consentGroup) {
+        consentGroup.classList.add('has-error');
+      }
+      if (consentError) {
+        consentError.textContent = 'Debes aceptar la política de tratamiento de datos.';
       }
       valid = false;
     }
@@ -286,6 +299,13 @@
         var cta = card.querySelector('[data-asset-download]');
         if (!assetPath || !cta) return;
 
+        // Suppress click when asset is unavailable (href still "#" or disabled)
+        cta.addEventListener('click', function (e) {
+          if (cta.classList.contains('btn-disabled') || cta.getAttribute('href') === '#') {
+            e.preventDefault();
+          }
+        });
+
         // Probe asset via HEAD request
         if (typeof fetch === 'function') {
           fetch(assetPath, { method: 'HEAD' })
@@ -313,14 +333,15 @@
      TIMELINE — staggered step reveal
      ============================================================ */
   function setupTimeline() {
-    var steps = document.querySelectorAll('.timeline-step');
+    var timeline = document.querySelector('.timeline');
+    if (!timeline) return;
+
+    var steps = timeline.querySelectorAll('.timeline-step');
     if (!steps.length) return;
 
     var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) {
-      for (var r = 0; r < steps.length; r++) {
-        steps[r].classList.add('is-revealed');
-      }
+      timeline.classList.add('is-revealed');
       return;
     }
 
@@ -328,11 +349,8 @@
       var observer = new IntersectionObserver(function (entries) {
         for (var e = 0; e < entries.length; e++) {
           if (entries[e].isIntersecting) {
-            var step = entries[e].target;
-            var index = Array.prototype.indexOf.call(steps, step);
-            step.style.setProperty('--delay', (index * 80) + 'ms');
-            step.classList.add('is-revealed');
-            observer.unobserve(step);
+            timeline.classList.add('is-revealed');
+            observer.unobserve(timeline);
           }
         }
       }, {
@@ -340,13 +358,9 @@
         rootMargin: '0px 0px -30px 0px'
       });
 
-      for (var i = 0; i < steps.length; i++) {
-        observer.observe(steps[i]);
-      }
+      observer.observe(timeline);
     } else {
-      for (var j = 0; j < steps.length; j++) {
-        steps[j].classList.add('is-revealed');
-      }
+      timeline.classList.add('is-revealed');
     }
   }
 
