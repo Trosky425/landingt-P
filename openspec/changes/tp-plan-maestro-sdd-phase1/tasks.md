@@ -15,9 +15,9 @@
 
 ## Phase 3: Behavior Wiring
 
-- [ ] 3.1 Update `script.js` `CONFIG.messages` with 5 service keys and change `setupWhatsAppLinks()` so only `data-intake` service CTAs open the modal while header, float, and team links keep direct redirect behavior. Depends: 1.1, 1.3. Effort: 1.5h.
-- [ ] 3.2 Add `setupIntakeModal()` in `script.js` for required-field validation, consent blocking, Netlify AJAX submit, and service-specific `wa.me` redirect fallback. Depends: 3.1. Effort: 2h.
-- [ ] 3.3 Add `setupLeadMagnets()` asset probing and timeline init/reveal hooks in `script.js` without regressing FAQ, nav, or current scroll behaviors. Depends: 1.2, 2.3. Effort: 1.25h.
+- [x] 3.1 Update `script.js` `CONFIG.messages` with 5 service keys and change `setupWhatsAppLinks()` so only `data-intake` service CTAs open the modal while header, float, and team links keep direct redirect behavior. Depends: 1.1, 1.3. Effort: 1.5h.
+- [x] 3.2 Add `setupIntakeModal()` in `script.js` for required-field validation, consent blocking, Netlify AJAX submit, and service-specific `wa.me` redirect fallback. Depends: 3.1. Effort: 2h.
+- [x] 3.3 Add `setupLeadMagnets()` asset probing and timeline init/reveal hooks in `script.js` without regressing FAQ, nav, or current scroll behaviors. Depends: 1.2, 2.3. Effort: 1.25h.
 
 ## Phase 4: Manual Verification
 
