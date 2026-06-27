@@ -9,9 +9,9 @@
 
 ## Phase 2: Styling
 
-- [ ] 2.1 Extend `styles.css` for `.card--tier-*`, `.tier-badge`, `.card-pricing`, and card CTA spacing so all 5 services stay aligned across breakpoints. Depends: 1.1. Effort: 1.5h.
-- [ ] 2.2 Add `styles.css` states for `.lead-magnet-card`, disabled/`Próximamente` CTA, `.intake-modal`, field errors, and consent row. Depends: 1.2, 1.3. Effort: 1.5h.
-- [ ] 2.3 Add `styles.css` vertical timeline layout, connector, and reduced-motion-safe reveal rules for the 15-step flow. Depends: 1.3. Effort: 1h.
+- [x] 2.1 Extend `styles.css` for `.card--tier-*`, `.tier-badge`, `.card-pricing`, and card CTA spacing so all 5 services stay aligned across breakpoints. Depends: 1.1. Effort: 1.5h.
+- [x] 2.2 Add `styles.css` states for `.lead-magnet-card`, disabled/`Próximamente` CTA, `.intake-modal`, field errors, and consent row. Depends: 1.2, 1.3. Effort: 1.5h.
+- [x] 2.3 Add `styles.css` vertical timeline layout, connector, and reduced-motion-safe reveal rules for the 15-step flow. Depends: 1.3. Effort: 1h.
 
 ## Phase 3: Behavior Wiring
 

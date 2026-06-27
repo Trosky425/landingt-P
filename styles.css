@@ -2058,6 +2058,27 @@ h1, h2, h3, h4 {
   .hero h1 .highlight {
     animation: none !important;
   }
+
+  /* Timeline: show all steps immediately, no stagger */
+  .timeline-step {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .timeline::before {
+    background: #D9DCE5 !important;
+  }
+
+  /* Intake modal: no transition */
+  .intake-modal {
+    transition: none !important;
+  }
+
+  .intake-modal-panel {
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 /* ============================================================
@@ -2170,5 +2191,390 @@ h1, h2, h3, h4 {
     margin: 80px auto;
     padding: 0 32px;
     font-size: 17px;
+  }
+}
+
+/* ============================================================
+   TIER CARDS — service catalog (Plan Maestro Phase 1)
+   ============================================================ */
+
+/* Tier badge — pill label at top of card */
+.tier-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.card--tier-express .tier-badge {
+  background: #E8F5E9;
+  color: #2E7D32;
+}
+
+.card--tier-medio .tier-badge {
+  background: #FFF3E0;
+  color: #E65100;
+}
+
+.card--tier-premium .tier-badge {
+  background: #EDE7F6;
+  color: #5A4FCF;
+}
+
+/* Tier border-top accent */
+.card--tier-express {
+  border-top: 3px solid #2E7D32;
+}
+
+.card--tier-medio {
+  border-top: 3px solid #E65100;
+}
+
+.card--tier-premium {
+  border-top: 3px solid #5A4FCF;
+}
+
+/* Pricing block — inline per card, between features and CTA */
+.card-pricing {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #E4E6EC;
+}
+
+.pricing-ref {
+  font-size: 13px;
+  color: #53627A;
+  display: block;
+  line-height: 1.5;
+}
+
+.pricing-badge {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  background: rgba(90, 79, 207, 0.08);
+  color: #5A4FCF;
+  line-height: 1.4;
+}
+
+/* Card CTA spacing — ensure pricing block doesn't break flex push */
+.card .btn-card {
+  margin-top: 20px;
+}
+
+.card-pricing + .btn-card {
+  margin-top: 16px;
+}
+
+/* 3-column grid at desktop for 5 cards (2-2-1 or 3-2 wrap) */
+@media (min-width: 900px) {
+  .cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ============================================================
+   LEAD MAGNETS — guide download cards
+   ============================================================ */
+.lead-magnets-grid {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .lead-magnets-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.lead-magnet-card {
+  text-align: center;
+}
+
+.lead-magnet-card .card-icon {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Disabled / Próximamente CTA state */
+.lead-magnet-cta[disabled],
+.lead-magnet-cta.is-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.lead-magnet-cta[disabled]:hover,
+.lead-magnet-cta.is-disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* ============================================================
+   INTAKE MODAL — overlay with Netlify Forms
+   ============================================================ */
+.intake-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.intake-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.intake-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(35, 38, 46, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.intake-modal-panel {
+  position: relative;
+  z-index: 1;
+  width: min(520px, calc(100% - 32px));
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 24px;
+  border: 1px solid #D9DCE5;
+  box-shadow: 0 24px 64px rgba(35, 38, 46, 0.15);
+  padding: 28px;
+  transform: translateY(16px) scale(0.97);
+  transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.intake-modal.is-open .intake-modal-panel {
+  transform: translateY(0) scale(1);
+}
+
+.intake-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.intake-modal-header h2 {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.intake-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: none;
+  border: 1px solid transparent;
+  color: #53627A;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.intake-modal-close:hover {
+  background: rgba(35, 38, 46, 0.06);
+  color: #23262E;
+  border-color: #D9DCE5;
+}
+
+.intake-modal-close:focus-visible {
+  outline: 2px solid #5A4FCF;
+  outline-offset: 2px;
+}
+
+/* Intake form inherits .contact-form — add modal-specific spacing */
+.intake-modal .contact-form {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+/* Intake consent row emphasis */
+.intake-modal .form-checkbox {
+  padding: 12px 16px;
+  background: rgba(90, 79, 207, 0.04);
+  border-radius: 14px;
+  border: 1px solid rgba(90, 79, 207, 0.1);
+}
+
+/* Intake field error states — extend existing .has-error pattern */
+.intake-modal .form-group.has-error input,
+.intake-modal .form-group.has-error select {
+  border-color: #E74C3C;
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+}
+
+.intake-modal .form-group.has-error label {
+  color: #E74C3C;
+}
+
+/* Intake success state inside modal */
+.intake-modal .form-success {
+  padding: 24px 0;
+}
+
+@media (min-width: 768px) {
+  .intake-modal-panel {
+    padding: 36px;
+  }
+
+  .intake-modal-header h2 {
+    font-size: 28px;
+  }
+}
+
+/* ============================================================
+   TIMELINE — 15-step vertical process flow
+   ============================================================ */
+.timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  counter-reset: timeline-step;
+}
+
+/* Vertical connector line */
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 22px;
+  width: 2px;
+  background: linear-gradient(180deg, #5A4FCF 0%, rgba(90, 79, 207, 0.15) 100%);
+  border-radius: 2px;
+}
+
+.timeline-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
+  padding-bottom: 28px;
+}
+
+.timeline-step:last-child {
+  padding-bottom: 0;
+}
+
+/* Step number circle — reuses .step-number visual style */
+.timeline-step .step-number {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #5A4FCF;
+  color: #fff;
+  font-weight: 800;
+  font-size: 18px;
+  font-family: 'Manrope', sans-serif;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 0 4px #F8F8FB, 0 4px 12px rgba(90, 79, 207, 0.2);
+  margin-bottom: 0;
+}
+
+.timeline-content {
+  flex: 1;
+  padding-top: 6px;
+  min-width: 0;
+}
+
+.timeline-content h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 6px;
+  line-height: 1.3;
+}
+
+.timeline-content p {
+  margin: 0;
+  color: #53627A;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Timeline reveal animation */
+.timeline-step {
+  opacity: 0;
+  transform: translateX(-12px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.timeline.is-revealed .timeline-step {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.timeline.is-revealed .timeline-step:nth-child(1)  { transition-delay: 0ms; }
+.timeline.is-revealed .timeline-step:nth-child(2)  { transition-delay: 60ms; }
+.timeline.is-revealed .timeline-step:nth-child(3)  { transition-delay: 120ms; }
+.timeline.is-revealed .timeline-step:nth-child(4)  { transition-delay: 180ms; }
+.timeline.is-revealed .timeline-step:nth-child(5)  { transition-delay: 240ms; }
+.timeline.is-revealed .timeline-step:nth-child(6)  { transition-delay: 300ms; }
+.timeline.is-revealed .timeline-step:nth-child(7)  { transition-delay: 360ms; }
+.timeline.is-revealed .timeline-step:nth-child(8)  { transition-delay: 420ms; }
+.timeline.is-revealed .timeline-step:nth-child(9)  { transition-delay: 480ms; }
+.timeline.is-revealed .timeline-step:nth-child(10) { transition-delay: 540ms; }
+.timeline.is-revealed .timeline-step:nth-child(11) { transition-delay: 600ms; }
+.timeline.is-revealed .timeline-step:nth-child(12) { transition-delay: 660ms; }
+.timeline.is-revealed .timeline-step:nth-child(13) { transition-delay: 720ms; }
+.timeline.is-revealed .timeline-step:nth-child(14) { transition-delay: 780ms; }
+.timeline.is-revealed .timeline-step:nth-child(15) { transition-delay: 840ms; }
+
+@media (min-width: 768px) {
+  .timeline::before {
+    left: 28px;
+  }
+
+  .timeline-step {
+    gap: 24px;
+    padding-bottom: 32px;
+  }
+
+  .timeline-step .step-number {
+    width: 56px;
+    height: 56px;
+    font-size: 22px;
+  }
+
+  .timeline-content {
+    padding-top: 10px;
+  }
+
+  .timeline-content h3 {
+    font-size: 20px;
+  }
+
+  .timeline-content p {
+    font-size: 16px;
   }
 }
