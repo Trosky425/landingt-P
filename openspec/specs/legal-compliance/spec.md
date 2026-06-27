@@ -2,13 +2,13 @@
 
 ## Purpose
 
-Mandates the privacy pages required to close the live non-compliance liability under **Ley 1581 de 2012 + Decreto 1377 de 2013 (SIC)** for a Colombian law-firm landing page that already collects personal data via a consent checkbox. Covers `privacy.html`, `aviso-privacidad.html`, and footer wiring. No backend; Netlify serves exact files.
+Mandates the privacy pages required to close the live non-compliance liability under **Ley 1581 de 2012 + Decreto 1377 de 2013 (SIC)** for a Colombian law-firm landing page that already collects personal data via a consent checkbox. Covers `privacy.html`, `aviso-privacidad.html`, footer wiring, and the WhatsApp intake consent channel. No backend; Netlify serves exact files.
 
 ## Requirements
 
 ### Requirement: Política de Tratamiento de Datos Page
 
-`privacy.html` MUST exist and declare `lang="es"`. It MUST be valid HTML5 and present, in Spanish (Colombian), the SIC-required sections: responsable del tratamiento, finalidad del tratamiento, derechos del titular (acceso, rectificación, supresión, actualización), canal de reclamos (HAB), and base legal. Firm-specific fields (responsable name, contacto, RNBd) MUST use clearly marked placeholders when real data is unavailable. It SHOULD match the landing visual design (Inter/Manrope, palette from `styles.css`).
+`privacy.html` MUST exist and declare `lang="es"`. It MUST be valid HTML5 and present, in Spanish (Colombian), the SIC-required sections: responsable del tratamiento, finalidad del tratamiento, derechos del titular (acceso, rectificación, supresión, actualización), canal de reclamos (HAB), and base legal. The responsable name MUST state José Manuel Piñeros (natural person acting as responsible party during the pre-SAS phase). The finalidad section MUST cover data collected through both the contact form and the WhatsApp intake form. This page SHOULD match the landing visual design (Inter/Manrope, palette from `styles.css`).
 
 #### Scenario: All mandatory SIC sections present
 
@@ -17,18 +17,50 @@ Mandates the privacy pages required to close the live non-compliance liability u
 - THEN sections for responsable, finalidad, derechos del titular, canal de reclamos, and base legal are all present and non-empty
 - AND the document `lang` attribute equals `es`
 
-#### Scenario: Firm-specific data unavailable
+#### Scenario: Responsable reflects real data
 
-- GIVEN real responsable/contacto/RNBd data has not been provided
-- WHEN the page is generated
-- THEN each missing field displays a clearly marked placeholder (e.g. `[Pendiente: …]`)
-- AND no fabricated personal or registry data appears
+- GIVEN `privacy.html` is served
+- WHEN a reader looks for the responsible party
+- THEN the responsable section names José Manuel Piñeros
+- AND does NOT display a `[Pendiente: …]` placeholder for the responsible party
+
+#### Scenario: Finalidad covers intake collection
+
+- GIVEN the finalidad section of `privacy.html`
+- WHEN a reader checks what personal-data purposes are declared
+- THEN intake-form data collection (name, city, service preference via WhatsApp intake) is explicitly listed as a treatment purpose
 
 #### Scenario: Valid HTML5
 
 - GIVEN `privacy.html` is served
 - WHEN validated against the HTML5 spec
 - THEN it passes with no structural errors
+
+#### Scenario: Firm-specific data partially unavailable
+
+- GIVEN some firm data outside responsable (e.g. RNBd, dirección exacta, teléfono SIC) has not been provided
+- WHEN the page is generated
+- THEN those specific fields display clearly marked placeholders (e.g. `[Pendiente: …]`)
+- AND no fabricated data appears
+- AND the responsable field specifically contains the real name, not a placeholder
+
+### Requirement: Intake Form Consent
+
+The WhatsApp intake form MUST include a consent checkbox that references `/privacy.html` and explicitly authorizes treatment of the data collected through the intake (name, city, service preference). The intake consent MUST be independent from the existing contact-form consent but MUST link to the same `/privacy.html` page.
+
+#### Scenario: Intake consent present and linked
+
+- GIVEN the intake form is rendered on the landing page
+- WHEN a visitor views the form before submission
+- THEN a checked consent checkbox is visible with text that references the política de tratamiento de datos
+- AND the checkbox label includes a resolvable link to `/privacy.html`
+
+#### Scenario: Consent absent blocks intake
+
+- GIVEN the intake form is displayed
+- WHEN the visitor unchecks the consent checkbox and submits
+- THEN the form does not redirect to WhatsApp
+- AND an inline message indicates consent is required
 
 ### Requirement: Aviso de Privacidad Complementario Page
 
