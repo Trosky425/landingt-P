@@ -337,7 +337,7 @@
             <span class="pricing-ref">Ref. CONALBOS: $200.000 – $500.000</span>
             <span class="pricing-badge">35% dto. · primeros 3 meses</span>
           </div>
-          <a class="btn btn-primary btn-card" href="#" data-intake="servicio-asesoria-express" data-service="asesoria-express">Solicitar asesoría express</a>
+          <a class="btn btn-primary btn-card" href="#" data-intake="personas-derechos" data-service="personas-derechos">Solicitar asesoría express</a>
         </article>
 
         <!-- 2. Acciones constitucionales — Express tier -->
@@ -359,7 +359,7 @@
             <span class="pricing-ref">Ref. CONALBOS: $300.000 – $800.000</span>
             <span class="pricing-badge">35% dto. · primeros 3 meses</span>
           </div>
-          <a class="btn btn-primary btn-card" href="#" data-intake="servicio-constitucional" data-service="constitucional">Necesito orientación</a>
+          <a class="btn btn-primary btn-card" href="#" data-intake="personas-derechos" data-service="personas-derechos">Necesito orientación</a>
         </article>
 
         <!-- 3. Conciliación / MASC — Medio tier -->
@@ -382,7 +382,7 @@
             <span class="pricing-ref">Ref. CONALBOS: $500.000 – $1.200.000</span>
             <span class="pricing-badge">35% dto. · primeros 3 meses</span>
           </div>
-          <a class="btn btn-primary btn-card" href="#" data-intake="servicio-conciliacion" data-service="conciliacion">Quiero resolver mi caso</a>
+          <a class="btn btn-primary btn-card" href="#" data-intake="conflictos-acuerdos" data-service="conflictos-acuerdos">Quiero resolver mi caso</a>
         </article>
 
         <!-- 4. Constitución de empresas — Medio tier -->
@@ -404,7 +404,7 @@
             <span class="pricing-ref">Ref. CONALBOS: $800.000 – $1.500.000</span>
             <span class="pricing-badge">35% dto. · primeros 3 meses</span>
           </div>
-          <a class="btn btn-primary btn-card" href="#" data-intake="servicio-empresa" data-service="empresa">Quiero crear empresa</a>
+          <a class="btn btn-primary btn-card" href="#" data-intake="empresas-emprendimientos" data-service="empresas-emprendimientos">Quiero crear empresa</a>
         </article>
 
         <!-- 5. Asesoría jurídica integral — Premium tier -->
@@ -430,7 +430,7 @@
             <span class="pricing-ref">Ref. CONALBOS: $1.200.000 – $3.000.000</span>
             <span class="pricing-badge">35% dto. · primeros 3 meses</span>
           </div>
-          <a class="btn btn-primary btn-card" href="#" data-intake="servicio-asesoria-integral" data-service="asesoria-integral">Quiero asesoría integral</a>
+          <a class="btn btn-primary btn-card" href="#" data-intake="personas-derechos" data-service="personas-derechos">Quiero asesoría integral</a>
         </article>
       </div>
     </div>
@@ -853,7 +853,7 @@
       </div>
 
       <div class="case-list" data-reveal="fade-up">
-        <button class="case-item" data-service="empresa" aria-label="Ver más sobre constitución de empresas">
+        <button class="case-item" data-service="empresas-emprendimientos" aria-label="Ver más sobre constitución de empresas">
           <svg class="case-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
           </svg>
@@ -863,7 +863,7 @@
             <polyline points="12 5 19 12 12 19"/>
           </svg>
         </button>
-        <button class="case-item" data-service="constitucional" aria-label="Ver más sobre acciones constitucionales">
+        <button class="case-item" data-service="personas-derechos" aria-label="Ver más sobre acciones constitucionales">
           <svg class="case-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           </svg>
@@ -873,7 +873,7 @@
             <polyline points="12 5 19 12 12 19"/>
           </svg>
         </button>
-        <button class="case-item" data-service="conciliacion" aria-label="Ver más sobre conciliación">
+        <button class="case-item" data-service="conflictos-acuerdos" aria-label="Ver más sobre conciliación">
           <svg class="case-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
             <polyline points="22 4 12 14.01 9 11.01"/>
@@ -884,7 +884,7 @@
             <polyline points="12 5 19 12 12 19"/>
           </svg>
         </button>
-        <button class="case-item" data-service="asesoria" aria-label="Ver más sobre asesoría jurídica">
+        <button class="case-item" data-service="personas-derechos" aria-label="Ver más sobre asesoría jurídica">
           <svg class="case-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
             <polyline points="14 2 14 8 20 8"/>
@@ -1066,17 +1066,15 @@
           <label for="intake-servicio">Servicio de interés</label>
           <select id="intake-servicio" name="servicio" required>
             <option value="" disabled selected>Selecciona un servicio</option>
-            <option value="asesoria-express">Asesoría jurídica express</option>
-            <option value="constitucional">Acciones constitucionales</option>
-            <option value="conciliacion">Conciliación / MASC</option>
-            <option value="empresa">Constitución de empresas</option>
-            <option value="asesoria-integral">Asesoría jurídica integral</option>
+            <option value="personas-derechos">Personas y derechos</option>
+            <option value="conflictos-acuerdos">Conflictos y acuerdos</option>
+            <option value="empresas-emprendimientos">Emprendimientos y empresas</option>
           </select>
           <span class="error-message" id="error-servicio" aria-live="polite"></span>
         </div>
 
         <div class="form-group form-checkbox">
-          <input type="checkbox" id="intake-consent" name="consent" required checked />
+          <input type="checkbox" id="intake-consent" name="consent" required />
           <label for="intake-consent">
             Autorizo el tratamiento de mis datos personales conforme a la
             <a href="/privacy.html" target="_blank" rel="noopener noreferrer">política de tratamiento de datos</a>.
