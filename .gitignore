@@ -1,0 +1,5 @@
+# Engram / internal tooling
+.atl/
+
+# OpenSpec changes (planning artifacts)
+openspec/

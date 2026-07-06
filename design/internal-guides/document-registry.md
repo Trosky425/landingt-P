@@ -62,9 +62,9 @@ See the [Brand System Reference](brand-system-reference.md#2-identifier-grammar)
 | ID | Title | Version | Date | Review State | Sources | Status |
 |----|-------|---------|------|--------------|---------|--------|
 | `TP-GEN-001 · V1.0 · 2026` | Example orientation checklist | `V1.0` | `2026-01-01` | `Pendiente de revisión` | `Example only — replace before use` | `Draft` |
-| `TP-SLD-001 · V1.0 · 2026` | Example debt guide | `V1.0` | `2026-01-01` | `Pendiente de revisión` | `Example only — replace before use` | `Draft` |
+| `TP-SLD-001 · V0.1 · 2026` | No puedo pagar mis deudas | `V0.1` | `2026-06-27` | `Pendiente de revisión` | `Ley 1564 de 2012 arts. 531-573; Ley 1116 de 2006 (pending validation for merchants)` | `Draft` |
 
-> Starter rows are examples only. Replace them with real document metadata before publication; do not treat them as legally reviewed or published assets.
+> Starter rows are examples only. Replace them with real document metadata before publication; do not treat them as legally reviewed or published assets. The `TP-SLD-001` row is a real draft (V0.1) pending human legal review.
 
 ---
 

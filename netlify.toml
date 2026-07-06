@@ -1,7 +1,7 @@
 # Netlify configuration — Tamara & Piñeros landing page
 
 [build]
-  publish = "."
+  publish = "public"
 
 # Security headers
 [[headers]]
@@ -16,35 +16,49 @@
 
 # Cache CSS and JS with short TTL + revalidation (safe for updates)
 [[headers]]
-  for = "/styles.css"
+  for = "/css/styles.css"
   [headers.values]
     Cache-Control = "public, max-age=300, must-revalidate"
 
 [[headers]]
-  for = "/script.js"
+  for = "/js/script.js"
   [headers.values]
     Cache-Control = "public, max-age=300, must-revalidate"
 
 # Images can stay cached longer (rarely change)
 [[headers]]
-  for = "/*.png"
+  for = "/images/*.avif"
   [headers.values]
     Cache-Control = "public, max-age=86400, must-revalidate"
 
 [[headers]]
-  for = "/_backup-slice1/*"
+  for = "/images/*.webp"
   [headers.values]
-    X-Robots-Tag = "noindex, nofollow, noarchive"
-    Cache-Control = "no-store"
+    Cache-Control = "public, max-age=86400, must-revalidate"
 
 [[headers]]
-  for = "/_backup-trust/*"
+  for = "/images/*.png"
   [headers.values]
-    X-Robots-Tag = "noindex, nofollow, noarchive"
-    Cache-Control = "no-store"
+    Cache-Control = "public, max-age=86400, must-revalidate"
 
 [[headers]]
-  for = "/tamara_pineros_landing_kit/*"
+  for = "/images/team/*.avif"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, must-revalidate"
+
+[[headers]]
+  for = "/images/team/*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, must-revalidate"
+
+[[headers]]
+  for = "/images/team/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, must-revalidate"
+
+# Internal guides — block from public access
+[[headers]]
+  for = "/assets/guides/*.md"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow, noarchive"
     Cache-Control = "no-store"
