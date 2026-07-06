@@ -69,7 +69,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@700;800&display=swap" rel="stylesheet" />
 
   <!-- Styles -->
-  <link rel="stylesheet" href="/css/styles.css?v=20260623" />
+  <link rel="stylesheet" href="/css/styles.css?v=1.1.2" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="/images/logo-monograma.png" />
@@ -221,40 +221,38 @@
             width="1000" height="1000" fetchpriority="high"
           />
         </div>
-        <div class="hero-stats">
-          <div class="stat">
-            <svg class="stat-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/>
-              <rect x="9" y="3" width="6" height="4" rx="1"/>
-              <path d="M9 14l2 2 4-4"/>
-            </svg>
-            <div class="stat-text">
-              <strong>Ruta clara</strong>
-              <p>Te orientamos sobre qué aplica, qué no y cuál es el siguiente paso.</p>
-            </div>
+        <div class="hero-stats hero-dossier">
+          <div class="dossier-stack" aria-hidden="true">
+            <div class="dossier-sheet dossier-sheet--back"></div>
+            <div class="dossier-sheet dossier-sheet--mid"></div>
           </div>
-          <div class="stat">
-            <svg class="stat-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M12 6v6l4 2"/>
-            </svg>
-            <div class="stat-text">
-              <strong>Enfoque práctico</strong>
-              <p>Menos enredo, más claridad para personas, emprendedores y empresas.</p>
-            </div>
+          <div class="dossier-header">
+            <span class="dossier-ref">Ref: TP-CONS-2025</span>
+            <span class="dossier-stamp">TP</span>
           </div>
-          <div class="stat">
-            <svg class="stat-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5A4FCF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-              <circle cx="12" cy="10" r="3"/>
-            </svg>
-            <div class="stat-text">
-              <strong>Atención local</strong>
-              <p>Villavicencio como base, con atención virtual según el asunto.</p>
+          <div class="dossier-body">
+            <div class="dossier-row">
+              <strong>Materia</strong>
+              <p>Constitución de empresas, tutelas, conciliación y asesoría integral.</p>
+            </div>
+            <div class="dossier-row">
+              <strong>Respuesta inicial</strong>
+              <p>Menos de 24 horas por WhatsApp o llamada.</p>
+            </div>
+            <div class="dossier-row dossier-row--highlight">
+              <strong>Próximo paso</strong>
+              <p>Revisión de documentos y definición de estrategia.</p>
             </div>
           </div>
         </div>
       </aside>
+    </div>
+
+    <!-- v1.1.2 case-path geometry + editorial depth -->
+    <div class="hero-geometry" aria-hidden="true">
+      <div class="geometry-node geometry-node--orb" style="top:10%;right:12%;"></div>
+      <div class="geometry-node geometry-node--ring" style="top:60%;right:5%;"></div>
+      <div class="geometry-node geometry-node--path" style="bottom:8%;left:4%;"></div>
     </div>
   </section>
 
@@ -310,6 +308,11 @@
        SERVICES
        ============================================================ -->
   <section class="section" id="servicios">
+    <!-- v1.1.2 decorative geometry -->
+    <div class="section-geometry" aria-hidden="true">
+      <div class="geometry-node geometry-node--plane" style="top:8%;left:6%;"></div>
+      <div class="geometry-node geometry-node--orb" style="bottom:12%;right:6%;"></div>
+    </div>
     <div class="container">
       <div class="section-head" data-reveal="fade-up">
         <p class="section-kicker">SERVICIOS</p>
@@ -646,6 +649,11 @@
        HOW IT WORKS
        ============================================================ -->
   <section class="section section-alt" id="como-funciona">
+    <!-- v1.1.2 decorative geometry -->
+    <div class="section-geometry" aria-hidden="true">
+      <div class="geometry-node geometry-node--plane" style="top:10%;right:5%;"></div>
+      <div class="geometry-node geometry-node--orb" style="bottom:15%;left:5%;"></div>
+    </div>
     <div class="container">
       <div class="section-head narrow" data-reveal="fade-up">
         <p class="section-kicker">PROCESO</p>
@@ -997,6 +1005,11 @@
        CONTACT
        ============================================================ -->
   <section class="section contact-section" id="contacto">
+    <!-- v1.1.2 decorative geometry -->
+    <div class="section-geometry" aria-hidden="true">
+      <div class="geometry-node geometry-node--plane" style="top:12%;right:5%;"></div>
+      <div class="geometry-node geometry-node--orb" style="bottom:15%;left:5%;"></div>
+    </div>
     <div class="container contact-grid">
       <div class="contact-cta" data-reveal="fade-up">
         <p class="section-kicker">CONTACTO</p>

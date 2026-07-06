@@ -7,12 +7,13 @@ schema: spec-driven
 context: |
   Tech stack: Static HTML5 + vanilla CSS + vanilla JS (IIFE, 'use strict', var-based, data-* bindings).
   No build tooling, no bundler, no framework, no package.json.
-  Architecture: Single-page landing (index.html 839 lines, styles.css, script.js 474 lines).
-  Deploy: Netlify (netlify.toml publish=".", _redirects SPA fallback, security/cache headers, Netlify Forms via AJAX).
+  Architecture: Static landing with deployable files under public/ (HTML, CSS, JS, images, redirects, robots, sitemap).
+  Deploy: Netlify static site (netlify.toml publish="public", public/_redirects, security/cache headers, Netlify Forms via AJAX).
   Content language: Spanish (Colombian law firm, Villavicencio). SDD meta-artifacts in English.
   Testing: None — no test runner, no test files. strict_tdd: false.
-  Assets: PNG images at root; handoff kit in tamara_pineros_landing_kit/ (9 strategy docs).
-  Git: Not a git repo.
+  Reference material: design/ contains handoff kits, internal guides, archived assets, and visual backups.
+  Local tools: tools/ contains repository-local verification scripts.
+  Git: Git repository.
 
 rules:
   proposal:
