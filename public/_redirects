@@ -1,6 +1,8 @@
 # Block internal artifacts from public access
 /openspec/*                  /404.html   404
 /.atl/*                      /404.html   404
+/assets/guides/*.md          /404.html   404
+/*.md                        /404.html   404
 
 # Legal route aliases
 /privacy                     /privacy.html              301

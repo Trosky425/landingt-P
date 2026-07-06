@@ -58,6 +58,12 @@
 
 # Internal guides — block from public access
 [[headers]]
+  for = "/*.md"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow, noarchive"
+    Cache-Control = "no-store"
+
+[[headers]]
   for = "/assets/guides/*.md"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow, noarchive"
