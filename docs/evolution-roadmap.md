@@ -10,7 +10,7 @@ Los planes amplios en `design/TP_PLAN_MAESTRO_SDD/` son insumos estratégicos y 
 |---|---|
 | Propósito | Presentar la firma y captar consultas. |
 | Tecnología | HTML, CSS y JavaScript estático en `public/`. |
-| Captación | Formulario Netlify Forms y WhatsApp. |
+| Captación | WhatsApp, teléfono y formulario asistido que prepara un mensaje de WhatsApp sin almacenamiento en Netlify Forms. |
 | Riesgo principal | Publicar material interno o cambiar textos legales sin revisión. |
 
 Mantener esta fase mientras el objetivo sea conversión simple y presencia profesional.

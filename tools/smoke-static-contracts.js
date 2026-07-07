@@ -111,6 +111,7 @@ const scriptPages = htmlFiles.map((filePath) => {
   };
 }).filter((page) => page.scriptSrcs.length > 0);
 const scriptPagesHtml = scriptPages.map((page) => page.html).join('\n');
+const publicTextFiles = walk(publicDir).filter((filePath) => /\.(?:html|js)$/i.test(filePath));
 
 try {
   new vm.Script(script, { filename: scriptPath });
@@ -144,6 +145,49 @@ for (const filePath of walk(publicDir)) {
   if (relativePath.endsWith('.md')) {
     fail(`public/ must not expose Markdown guides: ${relativePath}`);
   }
+}
+
+const forbiddenIntakePatterns = [
+  ['data-netlify', /\bdata-netlify\b/i],
+  ['netlify-honeypot', /\bnetlify-honeypot\b/i],
+  ['form-name', /\bform-name\b/i],
+  ['bot-field', /\bbot-field\b/i]
+];
+
+for (const filePath of publicTextFiles) {
+  const relativePath = path.relative(publicDir, filePath).replace(/\\/g, '/');
+  const text = readText(filePath);
+  for (const [label, pattern] of forbiddenIntakePatterns) {
+    if (pattern.test(text)) {
+      fail(`${relativePath} must not contain retired Netlify Forms marker: ${label}.`);
+    }
+  }
+}
+
+if (/<form\b[^>]*\bid=["']intakeForm["']/i.test(index)) {
+  fail('#intakeForm must be a non-submit container, not a navigational form.');
+}
+
+if (!/<(?:div|section)\b[^>]*\bid=["']intakeForm["'][^>]*\brole=["']form["']/i.test(index)) {
+  fail('#intakeForm must be a non-submit container with role="form".');
+}
+
+const intakeSubmitMatch = index.match(/<button\b[^>]*\bid=["']intakeSubmit["'][^>]*>/i);
+if (!intakeSubmitMatch) {
+  fail('index.html must include #intakeSubmit.');
+} else if (!/\btype=["']button["']/i.test(intakeSubmitMatch[0])) {
+  fail('#intakeSubmit must be type="button".');
+}
+
+for (const fieldId of ['intake-nombre', 'intake-ciudad']) {
+  const fieldMatch = index.match(new RegExp("<input\\b[^>]*\\bid=[\"']" + fieldId + "[\"'][^>]*>", 'i'));
+  if (!fieldMatch || !/\bmaxlength=["']80["']/i.test(fieldMatch[0])) {
+    fail(`#${fieldId} must cap user-provided WhatsApp URL text with maxlength="80".`);
+  }
+}
+
+if (/\bfetch\s*\(/.test(script)) {
+  fail('public/js/script.js must not call fetch for intake or any static fallback submission.');
 }
 
 const serviceBlockMatch = script.match(/var SERVICE_LABELS = \{([\s\S]*?)\n  \};/);
@@ -205,7 +249,7 @@ const requiredScriptContracts = [
   ['modal reset helper', /function resetIntakeFormState/],
   ['modal reset unhides fields', /hidden\s*=\s*false/],
   ['modal reset hides success state', /classList\.remove\('is-visible'\)/],
-  ['WhatsApp continuation reserves a tab during submit', /window\.open\('about:blank', '_blank'\)/],
+  ['WhatsApp continuation reserves a tab during intake click', /window\.open\('about:blank', '_blank'\)/],
   ['WhatsApp fallback same-tab navigation exists', /window\.location\.href\s*=\s*url/],
   ['WhatsApp generic context fallback is covered', /WHATSAPP_MESSAGES\[context\]\s*\|\|\s*WHATSAPP_MESSAGES\.hero/],
   ['lead magnet CTA selector is covered', /lead-magnet-cta/],
@@ -715,9 +759,7 @@ function buildBehaviorFixture() {
   append(modal, 'div', { id: 'intakeModalBackdrop', class: 'intake-modal-backdrop' });
   const panel = append(modal, 'div', { class: 'intake-modal-panel' });
   append(panel, 'button', { id: 'intakeModalClose', type: 'button' });
-  const form = append(panel, 'form', { id: 'intakeForm', name: 'intake' });
-  const formName = append(form, 'input', { type: 'hidden', name: 'form-name', value: 'intake' });
-  const botField = append(form, 'input', { type: 'text', name: 'bot-field', value: '' });
+  const form = append(panel, 'div', { id: 'intakeForm', role: 'form' });
   const nameInput = new FakeElement('input', { type: 'text', name: 'nombre', id: 'intake-nombre', value: '' });
   const cityInput = new FakeElement('input', { type: 'text', name: 'ciudad', id: 'intake-ciudad', value: '' });
   const serviceSelect = new FakeElement('select', { name: 'servicio', id: 'intake-servicio', value: '' });
@@ -727,19 +769,19 @@ function buildBehaviorFixture() {
   addFormGroup(form, cityInput);
   addFormGroup(form, serviceSelect);
   addFormGroup(form, consent);
+  const privacyLink = append(form, 'a', { href: '/privacy.html' });
+  privacyLink.textContent = 'política de tratamiento de datos';
   const submitWrap = append(form, 'div', { class: 'form-submit' });
-  const submit = append(submitWrap, 'button', { id: 'intakeSubmit', type: 'submit' });
-  submit.textContent = 'Enviar solicitud';
+  const submit = append(submitWrap, 'button', { id: 'intakeSubmit', type: 'button' });
+  submit.textContent = 'Continuar por WhatsApp';
   const success = append(panel, 'div', { id: 'intakeSuccess', class: 'form-success' });
   const successLink = append(success, 'a', {
     href: 'https://wa.me/573224768106',
     'data-whatsapp': 'intake-success'
   });
 
-  form._controls = [formName, botField, nameInput, cityInput, serviceSelect, consent];
+  form._controls = [nameInput, cityInput, serviceSelect, consent];
   form.elements = {
-    'form-name': formName,
-    'bot-field': botField,
     nombre: nameInput,
     ciudad: cityInput,
     servicio: serviceSelect,
@@ -767,6 +809,7 @@ function buildBehaviorFixture() {
     cityInput,
     serviceSelect,
     consent,
+    privacyLink,
     submit,
     submitWrap,
     success,
@@ -817,29 +860,54 @@ async function runBehaviorContracts() {
   assertBehavior(fixture.serviceSelect.value === 'conflictos-acuerdos', 'service CTA must set only the allowlisted service value.');
   assertBehavior(fixture.form.querySelectorAll('.form-group, .form-submit').every((group) => group.hidden === false), 'opening intake must unhide form groups and submit controls after a previous success state.');
   assertBehavior(!fixture.success.classList.contains('is-visible') && !fixture.success.hasAttribute('tabindex'), 'opening intake must hide and reset the previous success state.');
-  assertBehavior(!fixture.submit.disabled && fixture.submit.textContent === 'Enviar solicitud', 'opening intake must reset the submit button.');
+  assertBehavior(!fixture.submit.disabled && fixture.submit.textContent === 'Continuar por WhatsApp', 'opening intake must reset the submit button.');
+
+  const privacyEnterEvent = new FakeEvent('keydown', { target: fixture.privacyLink, key: 'Enter' });
+  fixture.form.dispatchEvent(privacyEnterEvent);
+  assertBehavior(!privacyEnterEvent.defaultPrevented, 'Enter on the privacy link must keep native link behavior.');
+  assertBehavior(fixture.openedWindows.length === 0, 'Enter on the privacy link must not trigger WhatsApp continuation.');
+
+  const serviceEnterEvent = new FakeEvent('keydown', { target: fixture.serviceSelect, key: 'Enter' });
+  fixture.form.dispatchEvent(serviceEnterEvent);
+  assertBehavior(!serviceEnterEvent.defaultPrevented, 'Enter on the service select must keep native select behavior.');
+  assertBehavior(fixture.openedWindows.length === 0, 'Enter on the service select must not trigger WhatsApp continuation.');
+
+  fixture.serviceSelect.value = 'conflictos-acuerdos';
+  fixture.nameInput.value = '';
+  fixture.cityInput.value = 'Bogota Private';
+  fixture.consent.checked = true;
+  fixture.submit.click();
+  assertBehavior(fixture.openedWindows.length === 0, 'missing name must not trigger WhatsApp continuation.');
+  assertBehavior(fixture.nameInput.getAttribute('aria-invalid') === 'true', 'missing name must be surfaced as an invalid field.');
+
+  fixture.nameInput.value = 'Alice Sensitive';
+  fixture.cityInput.value = '';
+  fixture.submit.click();
+  assertBehavior(fixture.openedWindows.length === 0, 'missing city must not trigger WhatsApp continuation.');
+  assertBehavior(fixture.cityInput.getAttribute('aria-invalid') === 'true', 'missing city must be surfaced as an invalid field.');
+
+  fixture.cityInput.value = 'Bogota Private';
+  fixture.consent.checked = false;
+  fixture.submit.click();
+  assertBehavior(fixture.openedWindows.length === 0, 'missing consent must not trigger WhatsApp continuation.');
+  assertBehavior(fixture.consent.getAttribute('aria-invalid') === 'true', 'missing consent must be surfaced as an invalid field.');
 
   fixture.nameInput.value = 'Alice Sensitive';
   fixture.cityInput.value = 'Bogota Private';
   fixture.consent.checked = true;
-  fixture.form.dispatchEvent(new FakeEvent('submit'));
+  fixture.consent.checked = true;
+  fixture.submit.click();
   await Promise.resolve();
   await Promise.resolve();
 
-  assertBehavior(fixture.fetchCalls.length === 1, 'valid intake submit must call fetch once.');
-  const submitCall = fixture.fetchCalls[0] || { options: {} };
-  assertBehavior(submitCall.url === '/', 'valid intake submit must post to the same-origin root path.');
-  assertBehavior(submitCall.options && submitCall.options.credentials === 'same-origin', 'valid intake submit must use same-origin credentials.');
-  assertBehavior(submitCall.options && submitCall.options.headers && submitCall.options.headers['Content-Type'] === 'application/x-www-form-urlencoded', 'valid intake submit must send an encoded Netlify form body.');
-  const submittedBody = new URLSearchParams(submitCall.options ? submitCall.options.body : '');
-  assertBehavior(submittedBody.get('form-name') === 'intake', 'valid intake submit must encode form-name=intake.');
-  assertBehavior(fixture.successLink.getAttribute('href').indexOf('https://wa.me/') === 0, 'valid intake submit must update the fallback WhatsApp link.');
-  assertBehavior(fixture.openedWindows.length === 1, 'valid intake submit must reserve and continue to one WhatsApp window.');
+  assertBehavior(fixture.fetchCalls.length === 0, 'valid intake click must not call fetch or post to Netlify Forms.');
+  assertBehavior(fixture.successLink.getAttribute('href').indexOf('https://wa.me/') === 0, 'valid intake click must update the fallback WhatsApp link.');
+  assertBehavior(fixture.openedWindows.length === 1, 'valid intake click must reserve and continue to one WhatsApp window.');
   const whatsappUrl = fixture.openedWindows[0] ? fixture.openedWindows[0].location.href : '';
   const decodedWhatsappUrl = decodeURIComponent(whatsappUrl);
   assertBehavior(whatsappUrl === fixture.successLink.getAttribute('href'), 'WhatsApp continuation and fallback link must use the same URL.');
   assertBehavior(decodedWhatsappUrl.indexOf('Conflictos y acuerdos') !== -1, 'WhatsApp continuation must include the selected allowlisted service label.');
-  assertBehavior(decodedWhatsappUrl.indexOf('Alice Sensitive') === -1 && decodedWhatsappUrl.indexOf('Bogota Private') === -1, 'WhatsApp continuation must not include submitted name or city PII.');
+  assertBehavior(decodedWhatsappUrl.indexOf('Alice Sensitive') !== -1 && decodedWhatsappUrl.indexOf('Bogota Private') !== -1, 'WhatsApp continuation must include submitted name and city for user-reviewed sending.');
 
   const beforeLeadHref = fixture.window.location.href;
   const leadEvent = fixture.leadCta.click();
@@ -859,11 +927,36 @@ async function runBehaviorContracts() {
   fixture.nameInput.value = 'Alice Sensitive';
   fixture.cityInput.value = 'Bogota Private';
   fixture.consent.checked = true;
-  fixture.form.dispatchEvent(new FakeEvent('submit'));
+  fixture.submit.click();
   await Promise.resolve();
-  assertBehavior(fixture.fetchCalls.length === 0, 'unknown submitted service must block Netlify submission.');
-  assertBehavior(fixture.openedWindows.length === 0, 'unknown submitted service must not trigger WhatsApp continuation.');
-  assertBehavior(fixture.serviceSelect.getAttribute('aria-invalid') === 'true', 'unknown submitted service must be rejected by validation.');
+  assertBehavior(fixture.fetchCalls.length === 0, 'unknown selected service must block Netlify submission.');
+  assertBehavior(fixture.openedWindows.length === 0, 'unknown selected service must not trigger WhatsApp continuation.');
+  assertBehavior(fixture.serviceSelect.getAttribute('aria-invalid') === 'true', 'unknown selected service must be rejected by validation.');
+
+  fixture.fetchCalls.length = 0;
+  fixture.openedWindows.length = 0;
+  fixture.serviceSelect.value = 'conflictos-acuerdos';
+  fixture.nameInput.value = 'N'.repeat(120);
+  fixture.cityInput.value = 'C'.repeat(120);
+  fixture.consent.checked = true;
+  fixture.submit.click();
+  await Promise.resolve();
+  const boundedWhatsappUrl = fixture.openedWindows[0] ? fixture.openedWindows[0].location.href : '';
+  const decodedBoundedWhatsappUrl = decodeURIComponent(boundedWhatsappUrl);
+  assertBehavior(boundedWhatsappUrl.length < 1000, 'bounded intake values must keep the generated WhatsApp URL within a conservative length.');
+  assertBehavior(decodedBoundedWhatsappUrl.indexOf('N'.repeat(80)) !== -1 && decodedBoundedWhatsappUrl.indexOf('N'.repeat(81)) === -1, 'name must be capped before building the WhatsApp URL.');
+  assertBehavior(decodedBoundedWhatsappUrl.indexOf('C'.repeat(80)) !== -1 && decodedBoundedWhatsappUrl.indexOf('C'.repeat(81)) === -1, 'city must be capped before building the WhatsApp URL.');
+
+  fixture.fetchCalls.length = 0;
+  fixture.openedWindows.length = 0;
+  fixture.serviceSelect.value = 'conflictos-acuerdos';
+  fixture.nameInput.value = 'Enter Sensitive';
+  fixture.cityInput.value = 'Enter City';
+  fixture.consent.checked = true;
+  const enterEvent = new FakeEvent('keydown', { target: fixture.cityInput, key: 'Enter' });
+  fixture.form.dispatchEvent(enterEvent);
+  assertBehavior(enterEvent.defaultPrevented, 'Enter inside intake fields must prevent default navigation/submission.');
+  assertBehavior(fixture.openedWindows.length === 1, 'Enter inside intake fields must trigger the same WhatsApp flow.');
 }
 
 function report() {

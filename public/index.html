@@ -985,7 +985,7 @@
   </main>
 
   <!-- ============================================================
-       INTAKE MODAL — Netlify Forms + WhatsApp redirect
+       INTAKE MODAL — local validation + WhatsApp handoff
        ============================================================ -->
   <div class="intake-modal" id="intakeModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="intakeModalTitle">
     <div class="intake-modal-backdrop" id="intakeModalBackdrop"></div>
@@ -1000,22 +1000,16 @@
         </button>
       </div>
 
-      <form name="intake" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="intakeForm" class="contact-form" novalidate>
-        <!-- Netlify hidden fields -->
-        <input type="hidden" name="form-name" value="intake" />
-        <p class="visually-hidden" aria-hidden="true">
-          <label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
-        </p>
-
+      <div id="intakeForm" class="contact-form" role="form" aria-labelledby="intakeModalTitle">
         <div class="form-group">
           <label for="intake-nombre">Nombre completo</label>
-          <input type="text" id="intake-nombre" name="nombre" required autocomplete="name" placeholder="Tu nombre" />
+          <input type="text" id="intake-nombre" name="nombre" required maxlength="80" autocomplete="name" placeholder="Tu nombre" />
           <span class="error-message" id="error-nombre" aria-live="polite"></span>
         </div>
 
         <div class="form-group">
           <label for="intake-ciudad">Ciudad</label>
-          <input type="text" id="intake-ciudad" name="ciudad" required autocomplete="address-level2" placeholder="Tu ciudad" />
+          <input type="text" id="intake-ciudad" name="ciudad" required maxlength="80" autocomplete="address-level2" placeholder="Tu ciudad" />
           <span class="error-message" id="error-ciudad" aria-live="polite"></span>
         </div>
 
@@ -1033,22 +1027,22 @@
         <div class="form-group form-checkbox">
           <input type="checkbox" id="intake-consent" name="consent" required />
           <label for="intake-consent">
-            Autorizo el tratamiento de mis datos personales conforme a la
+            Autorizo iniciar contacto por WhatsApp y el tratamiento de mis datos personales conforme a la
             <a href="/privacy.html" target="_blank" rel="noopener noreferrer">política de tratamiento de datos</a>.
           </label>
           <span class="error-message" id="error-consent" aria-live="polite"></span>
         </div>
 
         <div class="form-submit">
-          <button type="submit" class="btn btn-primary" id="intakeSubmit">Enviar solicitud</button>
+          <button type="button" class="btn btn-primary" id="intakeSubmit">Continuar por WhatsApp</button>
         </div>
 
         <div class="form-success" id="intakeSuccess">
-          <h3>Solicitud enviada</h3>
-          <p>Te contactaremos pronto. También puedes escribirnos por WhatsApp para una respuesta más rápida.</p>
+          <h3>Te llevamos a WhatsApp</h3>
+          <p>Al continuar, se abre WhatsApp con un mensaje prellenado que puedes revisar, editar y enviar desde tu cuenta. Ese canal pertenece a WhatsApp/Meta y aplica su tratamiento y condiciones.</p>
           <a class="btn btn-whatsapp" href="https://wa.me/573224768106" data-whatsapp="intake-success">Continuar por WhatsApp</a>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 

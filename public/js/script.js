@@ -7,7 +7,8 @@
   'use strict';
 
   var WHATSAPP_NUMBER = '573224768106';
-  var INTAKE_SUBMIT_TEXT = 'Enviar solicitud';
+  var INTAKE_SUBMIT_TEXT = 'Continuar por WhatsApp';
+  var MAX_INTAKE_FIELD_LENGTH = 80;
 
   var APPROVED_PUBLIC_PDFS = {};
 
@@ -25,7 +26,7 @@
     float: 'Hola, quiero orientación sobre un asunto jurídico.',
     privacy: 'Hola, quiero orientación sobre un asunto jurídico.',
     aviso: 'Hola, quiero orientación sobre un asunto jurídico.',
-    'intake-success': 'Hola, envié una solicitud por el sitio web de Tamara & Piñeros.',
+    'intake-success': 'Hola, quiero continuar mi solicitud por WhatsApp.',
     'equipo-sara': 'Hola, quiero hablar con la Dra. Sara Muñoz sobre un asunto de Derecho Público.',
     'equipo-camilo': 'Hola, quiero hablar con el Dr. Camilo Sáenz sobre un asunto de Derecho Privado.',
     'equipo-raul': 'Hola, quiero hablar con el Dr. Raúl González sobre un asunto de Legaltech.'
@@ -56,6 +57,36 @@
 
   function getWhatsAppUrl(message) {
     return 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(message);
+  }
+
+  function normalizeIntakeField(value) {
+    return String(value || '').trim().slice(0, MAX_INTAKE_FIELD_LENGTH);
+  }
+
+  function getIntakeControls(container) {
+    return {
+      nombre: container ? container.querySelector('[name="nombre"]') : null,
+      ciudad: container ? container.querySelector('[name="ciudad"]') : null,
+      servicio: container ? container.querySelector('[name="servicio"]') : null,
+      consent: container ? container.querySelector('[name="consent"]') : null
+    };
+  }
+
+  function buildIntakeWhatsAppMessage(container) {
+    var controls = getIntakeControls(container);
+    var name = normalizeIntakeField(controls.nombre.value);
+    var city = normalizeIntakeField(controls.ciudad.value);
+    var serviceLabel = getServiceLabel(controls.servicio.value);
+
+    return [
+      'Hola, quiero orientación jurídica.',
+      '',
+      'Nombre: ' + name,
+      'Ciudad: ' + city,
+      'Servicio de interés: ' + serviceLabel,
+      '',
+      'Autorizo iniciar contacto por WhatsApp y el tratamiento de mis datos personales conforme a la política de tratamiento de datos.'
+    ].join('\n');
   }
 
   function continueToWhatsApp(url, reservedWindow) {
@@ -382,11 +413,12 @@
     }
   }
 
-  function validateIntakeForm(form) {
-    var name = form.elements.nombre;
-    var city = form.elements.ciudad;
-    var service = form.elements.servicio;
-    var consent = form.elements.consent;
+  function validateIntakeForm(container) {
+    var controls = getIntakeControls(container);
+    var name = controls.nombre;
+    var city = controls.ciudad;
+    var service = controls.servicio;
+    var consent = controls.consent;
     var isValid = true;
 
     if (!name || !name.value.trim()) {
@@ -420,19 +452,31 @@
     return isValid;
   }
 
-  function resetIntakeFormState(form, serviceValue) {
-    if (!form) {
+  function resetIntakeFormState(container, serviceValue) {
+    if (!container) {
       return;
     }
 
-    form.reset();
+    var controls = getIntakeControls(container);
+    if (controls.nombre) {
+      controls.nombre.value = '';
+    }
+    if (controls.ciudad) {
+      controls.ciudad.value = '';
+    }
+    if (controls.servicio) {
+      controls.servicio.value = '';
+    }
+    if (controls.consent) {
+      controls.consent.checked = false;
+    }
 
-    var groups = form.querySelectorAll('.form-group, .form-submit');
+    var groups = container.querySelectorAll('.form-group, .form-submit');
     for (var i = 0; i < groups.length; i += 1) {
       groups[i].hidden = false;
     }
 
-    var fields = form.querySelectorAll('.form-group input, .form-group select, .form-group textarea');
+    var fields = container.querySelectorAll('.form-group input, .form-group select, .form-group textarea');
     for (var j = 0; j < fields.length; j += 1) {
       setError(fields[j], '');
     }
@@ -449,7 +493,7 @@
       submit.textContent = INTAKE_SUBMIT_TEXT;
     }
 
-    var serviceSelect = form.elements.servicio;
+    var serviceSelect = controls.servicio;
     if (serviceSelect && isAllowedService(serviceValue)) {
       serviceSelect.value = serviceValue;
       setError(serviceSelect, '');
@@ -461,7 +505,7 @@
     var panel = modal ? modal.querySelector('.intake-modal-panel') : null;
     var closeButton = document.getElementById('intakeModalClose');
     var backdrop = document.getElementById('intakeModalBackdrop');
-    var form = document.getElementById('intakeForm');
+    var intake = document.getElementById('intakeForm');
 
     if (!modal || !panel) {
       return;
@@ -474,7 +518,7 @@
 
       lastModalFocus = trigger || document.activeElement;
 
-      resetIntakeFormState(form, serviceValue);
+      resetIntakeFormState(intake, serviceValue);
 
       modal.classList.add('is-open');
       modal.setAttribute('aria-hidden', 'false');
@@ -536,94 +580,73 @@
       }
     });
 
-    if (form) {
-      setupIntakeForm(form);
+    if (intake) {
+      setupIntakeForm(intake);
     }
   }
 
-  function setupIntakeForm(form) {
+  function setupIntakeForm(container) {
     var submit = document.getElementById('intakeSubmit');
     var success = document.getElementById('intakeSuccess');
     var successLink = success ? success.querySelector('[data-whatsapp="intake-success"]') : null;
 
-    form.addEventListener('input', function (event) {
-      if (event.target && event.target.name) {
-        setError(event.target, '');
-      }
-    });
-
-    form.addEventListener('submit', function (event) {
-      event.preventDefault();
-
-      if (!validateIntakeForm(form)) {
-        var firstError = form.querySelector('.has-error input, .has-error select');
+    function handleIntakeRequest() {
+      if (!validateIntakeForm(container)) {
+        var firstError = container.querySelector('.has-error input, .has-error select');
         if (firstError) {
           firstError.focus();
         }
         return;
       }
 
-      var botField = form.elements['bot-field'];
-      if (botField && botField.value) {
-        return;
-      }
-
-      var serviceLabel = getServiceLabel(form.elements.servicio.value);
-      var whatsappUrl = getWhatsAppUrl(WHATSAPP_MESSAGES['intake-success'] + ' Servicio de interés: ' + serviceLabel + '.');
+      var whatsappUrl = getWhatsAppUrl(buildIntakeWhatsAppMessage(container));
       var reservedWhatsAppWindow = reserveWhatsAppWindow();
-      var body = new URLSearchParams(new FormData(form));
-
-      if (body.get('form-name') !== 'intake') {
-        body.set('form-name', 'intake');
-      }
 
       if (submit) {
         submit.disabled = true;
-        submit.textContent = 'Enviando...';
+        submit.textContent = 'Abriendo WhatsApp...';
       }
 
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: body.toString(),
-        credentials: 'same-origin'
-      }).then(function (response) {
-        if (!response.ok) {
-          throw new Error('Submission failed');
-        }
+      var groups = container.querySelectorAll('.form-group, .form-submit');
+      for (var i = 0; i < groups.length; i += 1) {
+        groups[i].hidden = true;
+      }
 
-        var groups = form.querySelectorAll('.form-group, .form-submit');
-        for (var i = 0; i < groups.length; i += 1) {
-          groups[i].hidden = true;
-        }
+      if (successLink) {
+        successLink.setAttribute('href', whatsappUrl);
+        successLink.setAttribute('target', '_blank');
+        successLink.setAttribute('rel', 'noopener noreferrer');
+      }
 
-        if (successLink) {
-          successLink.setAttribute('href', whatsappUrl);
-          successLink.setAttribute('target', '_blank');
-          successLink.setAttribute('rel', 'noopener noreferrer');
-        }
+      if (success) {
+        success.classList.add('is-visible');
+        success.setAttribute('tabindex', '-1');
+        success.focus();
+      }
 
-        if (success) {
-          success.classList.add('is-visible');
-          success.setAttribute('tabindex', '-1');
-          success.focus();
-        }
+      continueToWhatsApp(whatsappUrl, reservedWhatsAppWindow);
+    }
 
-        continueToWhatsApp(whatsappUrl, reservedWhatsAppWindow);
-      }).catch(function () {
-        if (reservedWhatsAppWindow && !reservedWhatsAppWindow.closed) {
-          reservedWhatsAppWindow.close();
-        }
-
-        if (submit) {
-          submit.disabled = false;
-          submit.textContent = INTAKE_SUBMIT_TEXT;
-        }
-
-        var service = form.elements.servicio;
-        setError(service, 'No pudimos enviar el formulario. Inténtalo nuevamente o escríbenos por WhatsApp.');
-      });
+    container.addEventListener('input', function (event) {
+      if (event.target && event.target.name) {
+        setError(event.target, '');
+      }
     });
+
+    container.addEventListener('keydown', function (event) {
+      var target = event.target;
+      var tagName = target && target.tagName;
+      var inputType = target && target.type;
+      var isTextInput = tagName === 'INPUT' && inputType !== 'checkbox' && inputType !== 'button';
+      if (event.key === 'Enter' && isTextInput) {
+        event.preventDefault();
+        handleIntakeRequest();
+      }
+    });
+
+    if (submit) {
+      submit.addEventListener('click', handleIntakeRequest);
+    }
   }
 
   function isUnsafeInternalPath(value) {

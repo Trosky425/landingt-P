@@ -4,7 +4,7 @@ Este documento explica el proyecto en lenguaje de propietario: qué existe hoy, 
 
 ## Resumen ejecutivo
 
-La landing de Tamara & Piñeros es un sitio estático para captar consultas jurídicas con una experiencia sobria, clara y confiable. Su función actual es presentar la firma, orientar al visitante por servicio, recibir solicitudes mediante formulario Netlify Forms y facilitar continuidad por WhatsApp.
+La landing de Tamara & Piñeros es un sitio estático para captar consultas jurídicas con una experiencia sobria, clara y confiable. Su función actual es presentar la firma, orientar al visitante por servicio y facilitar continuidad por WhatsApp mediante canales directos y un formulario asistido sin almacenamiento en Netlify Forms.
 
 No es todavía un sistema de gestión de clientes, CRM, expediente digital, portal de usuarios ni aplicación con base de datos propia.
 

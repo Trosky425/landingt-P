@@ -26,7 +26,7 @@ Este es el modelo corto para entender la operación de cara a la propietaria y a
 
 | Paso | Etapa | Qué ocurre |
 |---|---|---|
-| 1 | Entrada/contacto | La persona llega por la landing, formulario, WhatsApp o canal referido. |
+| 1 | Entrada/contacto | La persona llega por la landing, formulario asistido por WhatsApp, WhatsApp directo, llamada o canal referido. |
 | 2 | Clasificación | Se identifica el tipo de necesidad jurídica, urgencia, ciudad, canal y datos mínimos. |
 | 3 | Filtro legal/comercial | Se valida si el caso encaja con los servicios, si hay conflictos, riesgos o información insuficiente. |
 | 4 | Propuesta | Se explica alcance posible, condiciones, honorarios o siguiente paso comercial según corresponda. |

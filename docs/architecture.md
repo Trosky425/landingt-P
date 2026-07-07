@@ -21,12 +21,12 @@ Repositorio
 1. El visitante abre la landing en `public/index.html`.
 2. El HTML presenta contenido, servicios, llamados a la acción y formulario.
 3. `public/css/styles.css` controla la apariencia.
-4. `public/js/script.js` controla interacciones, validación, modal de contacto, Netlify Forms y continuidad a WhatsApp.
+4. `public/js/script.js` controla interacciones, validación, modal de contacto y continuidad a WhatsApp.
 5. Las páginas legales públicas viven en `public/privacy.html` y `public/aviso-privacidad.html`.
 
 ## Flujo de datos sensible
 
-El formulario debe tratarse como captación de datos personales. La implementación actual evita persistencia propia: envía a Netlify Forms y abre WhatsApp con una continuación controlada. El smoke test verifica que el enlace de WhatsApp no incluya nombre o ciudad del usuario.
+El formulario debe tratarse como captación de datos personales. La implementación actual valida localmente nombre, ciudad, servicio y consentimiento; no envía datos a Netlify Forms ni usa `fetch` para el intake. Después prepara un mensaje estructurado y abre WhatsApp para que la persona lo revise y lo envíe desde su cuenta.
 
 ## Contratos de seguridad y frontera
 
