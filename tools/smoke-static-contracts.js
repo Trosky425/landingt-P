@@ -7,6 +7,7 @@ const vm = require('vm');
 const root = path.resolve(__dirname, '..');
 const publicDir = path.join(root, 'public');
 const scriptPath = path.join(publicDir, 'js', 'script.js');
+const stylesPath = path.join(publicDir, 'css', 'styles.css');
 const indexPath = path.join(publicDir, 'index.html');
 
 const failures = [];
@@ -97,6 +98,7 @@ if (!fs.existsSync(indexPath)) {
 }
 
 const script = fs.existsSync(scriptPath) ? readText(scriptPath) : '';
+const styles = fs.existsSync(stylesPath) ? readText(stylesPath) : '';
 const index = fs.existsSync(indexPath) ? readText(indexPath) : '';
 const htmlFiles = walk(publicDir).filter((filePath) => filePath.toLowerCase().endsWith('.html'));
 const scriptPages = htmlFiles.map((filePath) => {
@@ -202,6 +204,53 @@ const dataServices = unique(getMatches(scriptPagesHtml, /data-(?:service|intake)
 
 if (!selectBlockMatch) {
   fail('index.html must include #intake-servicio select.');
+}
+
+const resourcesSectionMatch = index.match(/<section\b[^>]*\bid=["']recursos["'][\s\S]*?<\/section>/i);
+const resourcesSection = resourcesSectionMatch ? resourcesSectionMatch[0] : '';
+const leadRailViewportMatch = resourcesSection.match(/<div\b[^>]*\bclass=["'][^"']*lead-magnets-viewport[^"']*["'][^>]*>/i);
+
+if (!resourcesSection) {
+  fail('index.html must include #recursos section.');
+}
+
+if (!leadRailViewportMatch) {
+  fail('#recursos must include a lead-magnets-viewport horizontal rail.');
+} else {
+  const viewportTag = leadRailViewportMatch[0];
+  if (!/\btabindex=["']0["']/i.test(viewportTag)) {
+    fail('.lead-magnets-viewport must be keyboard focusable with tabindex="0".');
+  }
+  if (!/\brole=["']region["']/i.test(viewportTag) || !/\baria-label=["'][^"']+["']/i.test(viewportTag)) {
+    fail('.lead-magnets-viewport must expose a labelled region for assistive technology.');
+  }
+}
+
+if (!/\.lead-magnets-viewport\s*\{[\s\S]*?overflow-x:\s*auto/i.test(styles)) {
+  fail('.lead-magnets-viewport must own horizontal overflow instead of the page.');
+}
+
+if (!/\.lead-magnets-viewport\s*\{[\s\S]*?scroll-snap-type:\s*x\s+mandatory/i.test(styles)) {
+  fail('.lead-magnets-viewport must define horizontal scroll snap.');
+}
+
+if (!/\.lead-magnet-card\s*\{[\s\S]*?scroll-snap-align:\s*start/i.test(styles)) {
+  fail('.lead-magnet-card must define scroll-snap-align for the horizontal rail.');
+}
+
+if (!/@media\s*\(prefers-reduced-motion:\s*reduce\)/i.test(styles)) {
+  fail('lead magnet transitions must respect prefers-reduced-motion.');
+}
+
+const railCtas = getMatches(resourcesSection, /<a\b[^>]*\blead-magnet-cta\b[^>]*>/g, 0);
+if (railCtas.length !== 3) {
+  fail('#recursos must keep exactly three lead magnet CTAs.');
+}
+
+for (const cta of railCtas) {
+  if (!/\bis-disabled\b/.test(cta) || !/\bhref=["']#["']/i.test(cta)) {
+    fail('lead magnet CTAs must stay disabled and non-navigational until guides are approved.');
+  }
 }
 
 if (allowedServices.join('|') !== selectServices.join('|')) {

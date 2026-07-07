@@ -2454,30 +2454,168 @@ h1, h2, h3, h4 {
 }
 
 /* ============================================================
-   LEAD MAGNETS — guide download cards, flat translucency
+   LEAD MAGNETS — Legal Intelligence Rail
    ============================================================ */
-.lead-magnets-grid {
-  grid-template-columns: 1fr;
+.lead-magnets-shell {
+  position: relative;
+  isolation: isolate;
+  margin-top: 8px;
+  max-width: 100%;
 }
 
-@media (min-width: 640px) {
-  .lead-magnets-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.lead-magnets-shell::before {
+  content: "";
+  position: absolute;
+  inset: -28px 0;
+  z-index: -1;
+  border-radius: calc(var(--radius-xl) + 12px);
+  background:
+    radial-gradient(circle at 16% 14%, rgba(90,79,207,.16), transparent 32%),
+    linear-gradient(135deg, rgba(255,255,255,.60), rgba(238,240,248,.34));
+  opacity: .86;
+}
+
+.lead-magnets-viewport {
+  position: relative;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: 14px 2px 24px;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 2px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(90,79,207,.42) rgba(31,36,48,.08);
+  -webkit-overflow-scrolling: touch;
+  mask-image: linear-gradient(90deg, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%);
+}
+
+.lead-magnets-viewport:focus-visible {
+  outline: 3px solid rgba(90,79,207,.48);
+  outline-offset: 8px;
+  border-radius: var(--radius-xl);
+}
+
+.lead-magnets-viewport::-webkit-scrollbar {
+  height: 10px;
+}
+
+.lead-magnets-viewport::-webkit-scrollbar-track {
+  background: rgba(31,36,48,.08);
+  border-radius: var(--radius-pill);
+}
+
+.lead-magnets-viewport::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, rgba(90,79,207,.48), rgba(31,36,48,.30));
+  border-radius: var(--radius-pill);
+}
+
+.lead-magnets-grid {
+  display: flex;
+  grid-template-columns: none;
+  gap: 18px;
+  min-width: min-content;
 }
 
 .lead-magnet-card {
-  text-align: center;
-  background: var(--color-surface-flat);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: 28px;
-  box-shadow: var(--shadow-sm);
+  position: relative;
+  flex: 0 0 min(82vw, 420px);
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  scroll-snap-align: start;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.88), rgba(255,255,255,.66)),
+    radial-gradient(circle at 88% 0%, rgba(90,79,207,.14), transparent 34%);
+  border: 1px solid rgba(90,79,207,.16);
+  border-radius: calc(var(--radius-lg) + 6px);
+  padding: 26px;
+  box-shadow: 0 22px 54px rgba(31,36,48,.10);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease, background .28s ease;
+}
+
+.lead-magnet-card::before {
+  content: "";
+  position: absolute;
+  inset: 14px 14px auto auto;
+  width: 76px;
+  height: 76px;
+  border-top: 1px solid rgba(90,79,207,.20);
+  border-right: 1px solid rgba(90,79,207,.20);
+  border-radius: 0 18px 0 0;
+  pointer-events: none;
+}
+
+.lead-magnet-card:hover,
+.lead-magnet-card:focus-within {
+  transform: translateY(-6px);
+  border-color: rgba(90,79,207,.34);
+  box-shadow: 0 28px 68px rgba(31,36,48,.14);
+}
+
+.lead-magnet-meta {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+  color: var(--color-accent);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  line-height: 1.2;
+  text-transform: uppercase;
 }
 
 .lead-magnet-card .card-icon {
-  margin-left: auto;
-  margin-right: auto;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  margin: 0 0 22px;
+  border-radius: 18px;
+  background: rgba(90,79,207,.10);
+  box-shadow: inset 0 0 0 1px rgba(90,79,207,.14);
+}
+
+.lead-magnet-card h3 {
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  max-width: 12ch;
+}
+
+.lead-magnet-card p {
+  margin: 16px 0 0;
+  color: var(--color-muted);
+}
+
+.lead-magnet-card .btn-card {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+@media (min-width: 900px) {
+  .lead-magnets-grid {
+    gap: 24px;
+  }
+
+  .lead-magnet-card {
+    flex-basis: 390px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lead-magnet-card {
+    transition: none;
+  }
+
+  .lead-magnet-card:hover,
+  .lead-magnet-card:focus-within {
+    transform: none;
+  }
 }
 
 /* Disabled / Próximamente CTA state */
