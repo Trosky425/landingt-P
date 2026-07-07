@@ -39,7 +39,7 @@ Este es el modelo corto para entender la operación de cara a la propietaria y a
 Ejecute siempre desde la raíz:
 
 ```bash
-node tools/smoke-static-contracts.js
+pnpm smoke
 ```
 
 Resultado esperado:
@@ -55,6 +55,12 @@ Además, revise manualmente:
 - que `public/_redirects` siga bloqueando rutas internas;
 - que `git diff --name-only` muestre solo archivos esperados.
 
+## Regla pnpm-only
+
+- Use `pnpm` para scripts, verificación e instalación.
+- No use `npm`, `npx`, `yarn` ni `bun` en este repositorio.
+- Mantenga `pnpm-lock.yaml` como el lockfile permitido; no agregue lockfiles de otros gestores.
+
 ## Flujo para publicar activos legales o PDFs
 
 1. Redacte o edite el material fuera de `public/`, normalmente en `design/internal-guides/`.
@@ -63,7 +69,7 @@ Además, revise manualmente:
 4. Copie la versión aprobada a una ruta pública como `public/assets/guides/` si el proyecto la crea.
 5. Actualice la allowlist o contrato técnico si el JavaScript debe permitir descarga pública.
 6. Enlace el activo desde `public/index.html` únicamente después de aprobarlo.
-7. Ejecute `node tools/smoke-static-contracts.js`.
+7. Ejecute `pnpm smoke`.
 
 ## Despliegue
 

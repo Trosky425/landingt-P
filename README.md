@@ -40,7 +40,7 @@ Regla importante: ningún documento interno, borrador legal o guía no aprobada 
 Ejecute desde la raíz del repositorio:
 
 ```bash
-node tools/smoke-static-contracts.js
+pnpm smoke
 ```
 
 El resultado esperado es:
@@ -48,6 +48,8 @@ El resultado esperado es:
 ```text
 Smoke static contracts passed.
 ```
+
+`pnpm smoke` ejecuta internamente `tools/smoke-static-contracts.js`; use `pnpm` como entrada operativa principal.
 
 ## Cómo evoluciona sin improvisar
 

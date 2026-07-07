@@ -23,10 +23,13 @@ Este mapa traduce la estructura técnica a lenguaje de propietario. La pregunta 
 | `design/TP_PLAN_MAESTRO_SDD/` | Interno estratégico por validar | Planes amplios, flujos y matrices para evolución futura. | Cuando una idea pase a decisión validada u OpenSpec. |
 | `tools/` | Interno verificación | Scripts locales de control, como el smoke test del sitio estático. | Al cambiar contratos técnicos o reglas de seguridad. |
 | `openspec/` | Gobierno interno | Propuestas, especificaciones, diseños y tareas del flujo SDD. | En cada cambio formal del proyecto. |
+| `package.json` | Operativo repositorio | Define scripts pnpm-only, metadatos mínimos y versión esperada del gestor. | Al cambiar scripts, requisitos de Node o política de herramientas. |
+| `pnpm-lock.yaml` | Operativo repositorio | Lockfile permitido para mantener resolución reproducible con pnpm. | Al cambiar dependencias o metadatos gestionados por pnpm. |
+| `pnpm-workspace.yaml` | Operativo repositorio | Configuración raíz de pnpm y reglas del workspace. | Al cambiar reglas pnpm-only o alcance del workspace. |
 | `.opencode/` | Interno herramientas | Skills o configuración local de automatización del asistente. | Solo al cambiar herramientas de trabajo. |
 | `.atl/` | Interno herramientas | Datos locales de herramientas/índices. Está ignorado y no debe publicarse. | Normalmente no se edita manualmente. |
 | `netlify.toml` | Operativo despliegue | Configura publicación desde `public/`, encabezados de seguridad y caché. | Cambios de despliegue, seguridad o caché. |
-| `.gitignore` | Operativo repositorio | Define qué archivos no entran al control de versiones. | Al cambiar qué debe versionarse o ignorarse. |
+| `.gitignore` | Operativo repositorio | Controla artefactos no publicables y bloquea rastros no-pnpm, como lockfiles de otros gestores. | Al cambiar qué debe versionarse o ignorarse. |
 
 ## Regla de oro
 

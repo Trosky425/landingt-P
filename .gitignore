@@ -3,3 +3,14 @@
 
 # OpenSpec changes (planning artifacts)
 openspec/
+
+# Dependencies
+node_modules/
+.opencode/node_modules/
+
+# Non-pnpm package manager artifacts
+package-lock.json
+npm-shrinkwrap.json
+yarn.lock
+bun.lockb
+bun.lock
